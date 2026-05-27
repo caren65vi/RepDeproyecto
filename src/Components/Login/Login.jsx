@@ -35,7 +35,7 @@ const Login = () => {
   });
 
   const localeText = {
-    signInTitle: 'Iniciar sesión',
+    signInTitle: 'Inicio sesión',
     signInSubtitle: 'Accede con tu cuenta',
     signInRememberMe: 'Recordarme',
     providerSignInTitle: (provider) =>
