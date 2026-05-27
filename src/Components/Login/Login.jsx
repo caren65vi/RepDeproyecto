@@ -6,6 +6,7 @@ import { Box, CircularProgress } from '@mui/material';
 import { signIn as firebaseSignIn, signInGoogle,  onAuthChange, doSignOut } from '../../FireBase/auth';
 import { getDoc, doc } from 'firebase/firestore';
 import { db } from '../../FireBase/config';
+import './Login.css';
 
 const providers = [
   { id: 'google', name: 'Google' },
@@ -30,8 +31,24 @@ const Login = () => {
   const [cargando, setCargando] = React.useState(true);
 
   const THEME = createTheme({
-    palette: { mode: 'light' },
+    palette: { mode: 'dark' },
   });
+
+  const localeText = {
+    signInTitle: 'Iniciar sesión',
+    signInSubtitle: 'Accede con tu cuenta',
+    signInRememberMe: 'Recordarme',
+    providerSignInTitle: (provider) =>
+      provider.toLowerCase().includes('google')
+        ? `Iniciar sesión con ${provider}`
+        : 'Iniciar sesión',
+    email: 'Correo electrónico',
+    password: 'Contraseña',
+    or: 'o',
+    with: 'con',
+    passkey: 'passkey',
+    to: 'a',
+  };
 
   React.useEffect(() => {
     const unsubscribe = onAuthChange(async (firebaseUser) => {
@@ -58,7 +75,7 @@ const Login = () => {
         result = await firebaseSignIn(email, password);
       } else if (provider.id === 'google') {
         result = await signInGoogle();
-      }  else {
+      } else {
         return { error: 'Proveedor no soportado.' };
       }
       setSessionData(result);
@@ -89,20 +106,23 @@ const Login = () => {
 
   return (
     <AppProvider theme={THEME}>
-      <SignInPage
-        signIn={signIn}
-        providers={providers}
-        slotProps={{
-          form: { noValidate: true },
-          submitButton: { color: 'primary', variant: 'contained' },
-        }}
-        sx={{
-          '& form > .MuiStack-root': {
-            marginTop: '2rem',
-            rowGap: '0.5rem',
-          },
-        }}
-      />
+      <div className="login-wrapper">
+        <SignInPage
+          signIn={signIn}
+          providers={providers}
+          localeText={localeText}
+          slotProps={{
+            form: { noValidate: true },
+            submitButton: { color: 'primary', variant: 'contained' },
+          }}
+          sx={{
+            '& form > .MuiStack-root': {
+              marginTop: '2rem',
+              rowGap: '0.5rem',
+            },
+          }}
+        />
+      </div>
     </AppProvider>
   );
 };

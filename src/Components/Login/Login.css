@@ -1,7 +1,212 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
+
+.login-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #0d1117;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(29, 78, 216, 0.14) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(96, 165, 250, 0.09) 0%, transparent 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+
+
+.login-wrapper .MuiCard-root,
+.login-wrapper .MuiPaper-root {
+  background-color: #1a2540 !important;
+  background-image: none !important;
+  border: 1px solid #2d3f6e !important;
+  border-radius: 18px !important;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.55) !important;
+}
+
+
+.login-wrapper h5,
+.login-wrapper h6,
+.login-wrapper .MuiTypography-h5,
+.login-wrapper .MuiTypography-h6 {
+  color: #e2e8f0 !important;
+  font-weight: 700 !important;
+}
+
+.login-wrapper .MuiTypography-body2,
+.login-wrapper .MuiTypography-subtitle1 {
+  color: #94a3b8 !important;
+}
+
+
+.login-wrapper .MuiOutlinedInput-root {
+  background-color: #0d1117 !important;
+  border-radius: 10px !important;
+  color: #e2e8f0 !important;
+}
+
+.login-wrapper .MuiOutlinedInput-root fieldset {
+  border-color: #2d3f6e !important;
+}
+
+.login-wrapper .MuiOutlinedInput-root:hover fieldset {
+  border-color: #60a5fa !important;
+}
+
+.login-wrapper .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: #1d4ed8 !important;
+  border-width: 2px !important;
+}
+
+.login-wrapper .MuiInputLabel-root {
+  color: #64748b !important;
+}
+
+.login-wrapper .MuiInputLabel-root.Mui-focused {
+  color: #60a5fa !important;
+}
+
+.login-wrapper input {
+  color: #e2e8f0 !important;
+}
+
+.login-wrapper input::placeholder {
+  color: #475569 !important;
+  opacity: 1;
+}
+
+
+.login-wrapper .MuiButton-containedPrimary {
+  background-color: #1d4ed8 !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  border-radius: 10px !important;
+  text-transform: none !important;
+  font-size: 0.95rem !important;
+  padding: 10px 16px !important;
+  box-shadow: 0 4px 16px rgba(29, 78, 216, 0.4) !important;
+  transition: background-color 0.2s, box-shadow 0.2s !important;
+}
+
+.login-wrapper .MuiButton-containedPrimary:hover {
+  background-color: #1e40af !important;
+  box-shadow: 0 6px 22px rgba(29, 78, 216, 0.55) !important;
+}
+
+.login-wrapper .MuiButton-outlined,
+.login-wrapper .MuiButton-outlinedPrimary {
+  border-color: #2d3f6e !important;
+  color: #e2e8f0 !important;
+  font-weight: 500 !important;
+  border-radius: 10px !important;
+  text-transform: none !important;
+  font-size: 0.95rem !important;
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s !important;
+}
+
+.login-wrapper .MuiButton-outlined:hover,
+.login-wrapper .MuiButton-outlinedPrimary:hover {
+  border-color: #60a5fa !important;
+  background-color: rgba(96, 165, 250, 0.08) !important;
+  color: #60a5fa !important;
+}
+
+
+.login-wrapper .MuiDivider-root {
+  border-color: #2d3f6e !important;
+}
+
+.login-wrapper .MuiDivider-root::before,
+.login-wrapper .MuiDivider-root::after {
+  border-color: #2d3f6e !important;
+}
+
+.login-wrapper .MuiDivider-wrapper {
+  color: #475569 !important;
+  font-size: 0.85rem;
+}
+
+
+.login-wrapper a,
+.login-wrapper .MuiLink-root {
+  color: #60a5fa !important;
+}
+
+.login-wrapper a:hover,
+.login-wrapper .MuiLink-root:hover {
+  color: #93c5fd !important;
+}
+
+.login-wrapper .MuiAlert-root {
+  background-color: rgba(220, 38, 38, 0.15) !important;
+  border: 1px solid rgba(220, 38, 38, 0.35) !important;
+  color: #fca5a5 !important;
+  border-radius: 10px !important;
+}
+
+
+@media (min-width: 600px) and (max-width: 1024px) {
+  .login-wrapper {
+    padding: 3rem 2rem;
+    align-items: center;
+  }
+
+  .login-wrapper .MuiCard-root,
+  .login-wrapper .MuiPaper-root {
+    max-width: 480px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .login-wrapper h5,
+  .login-wrapper .MuiTypography-h5 {
+    font-size: 1.5rem !important;
+  }
+}
+
+
+@media (max-width: 599px) {
+  .login-wrapper {
+    padding: 1.25rem 1rem;
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+
+  .login-wrapper .MuiCard-root,
+  .login-wrapper .MuiPaper-root {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 14px !important;
+  }
+
+
+  .login-wrapper h5,
+  .login-wrapper h6,
+  .login-wrapper .MuiTypography-h5,
+  .login-wrapper .MuiTypography-h6 {
+    font-size: 1.35rem !important;
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  .login-wrapper .MuiTypography-body2,
+  .login-wrapper .MuiTypography-subtitle1 {
+    display: block !important;
+    visibility: visible !important;
+    font-size: 0.9rem !important;
+  }
+
+  .login-wrapper .MuiButton-containedPrimary,
+  .login-wrapper .MuiButton-outlined {
+    font-size: 0.9rem !important;
+    padding: 10px 14px !important;
+  }
+
+  .login-wrapper .MuiOutlinedInput-root input {
+    font-size: 0.95rem !important;
+  }
 }
