@@ -86,7 +86,8 @@ main hr {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+
+/* @media (min-width: 768px) and (max-width: 1024px) {
     main {
         flex-direction: column;
     }
@@ -96,7 +97,7 @@ main hr {
         width: 100%;
         height: auto;
     }
-}
+} */
 
 
 @media (min-width: 1025px) {
