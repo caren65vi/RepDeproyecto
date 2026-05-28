@@ -1,3 +1,7 @@
+*, *::before, *::after {
+  font-family: 'Times New Roman', Times, serif;
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;
@@ -15,6 +19,17 @@
     outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
+}
+
+:root {
+  --primary: #1d4ed8; /* azul primario para botones y elementos activos */
+  --accent: #60a5fa;  /* azul cielo para acentos y énfasis */
+  --primary-contrast: #ffffff;
+  --accent-contrast: #06223a;
+  --btn-radius: 8px;
+  --btn-padding: 10px 16px;
+  --btn-shadow: 0 8px 20px rgba(29,78,216,0.14);
+  --btn-shadow-accent: 0 10px 30px rgba(96,165,250,0.16);
 }
 
 .hero {
