@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { onAuthChange } from '../../FireBase/auth'
+import { db } from '../../FireBase/config'
+import { doc, getDoc } from 'firebase/firestore'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
@@ -23,9 +25,26 @@ const MIS_REPORTES = [
 
 const NavUser = () => {
   const [user, setUser] = useState(null)
+  const [userName, setUserName] = useState('Usuario')
 
   useEffect(() => {
-    const unsub = onAuthChange((firebaseUser) => setUser(firebaseUser))
+    const unsub = onAuthChange(async (firebaseUser) => {
+      setUser(firebaseUser)
+
+      if (!firebaseUser) {
+        setUserName('Usuario')
+        return
+      }
+
+      try {
+        const snap = await getDoc(doc(db, 'usuarios', firebaseUser.uid))
+        const nombre = snap.exists() ? snap.data()?.nombre : null
+        setUserName(typeof nombre === 'string' && nombre.trim() ? nombre.trim() : 'Usuario')
+      } catch {
+        setUserName('Usuario')
+      }
+    })
+
     return () => unsub()
   }, [])
 
@@ -48,7 +67,7 @@ const NavUser = () => {
         )}
         <div className="navUserUserInfo">
           <span className="navUserUserName">
-            {user?.displayName || user?.email?.split('@')[0] || 'Invitado'}
+            {userName}
           </span>
           {user && (
             <span className="navUserUserEmail">{user.email}</span>
