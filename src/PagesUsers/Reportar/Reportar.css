@@ -1,0 +1,11 @@
+.reportar__title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.reportar__subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+}
