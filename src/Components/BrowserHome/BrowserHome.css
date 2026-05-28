@@ -52,24 +52,68 @@
 
 @media (max-width: 768px) {
   .browser-home {
-    flex-wrap: wrap;
-    padding: 16px 20px;
-    gap: 24px;
+    padding: 12px 20px;
+    gap: 10px;
   }
 
-  .browser-home .titulo {
-    flex: 1 1 100%;
-    order: 2;
+  .browser-home .icono img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .browser-home .titulo h3 {
+    font-size: 17px;
+  }
+
+  .browser-home .titulo p {
+    font-size: 12px;
   }
 
   .browser-home .botones {
-    flex: 1 1 100%;
-    order: 3;
-    width: 100%;
+    gap: 8px;
+  }
+
+  .browser-home .botones .btn {
+    padding: 9px 12px;
+    gap: 0;
+  }
+
+  .btn-text {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .browser-home {
+    padding: 16px 18px;
     gap: 12px;
   }
 
-  .browser-home .botones button {
-    flex: 1;
+  .browser-home .icono img {
+    width: 52px;
+    height: 52px;
+  }
+
+  .browser-home .titulo h3 {
+    font-size: 20px;
+  }
+
+  .browser-home .titulo p {
+    font-size: 13px;
+  }
+
+  .browser-home .botones {
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .browser-home .botones .btn {
+    padding: 12px 14px;
+    gap: 0;
+    font-size: 1.1rem;
+  }
+
+  .btn-text {
+    display: none;
   }
 }

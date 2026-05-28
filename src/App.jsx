@@ -12,10 +12,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<BrowserHome />} />
+        <Route path="/" element={
+          <>
+            <BrowserHome />
+            <Main />
+          </>
+        } />
         <Route path="/login" element={<Login />} />
       </Routes>
-    {/* <Main /> */}
     </BrowserRouter>
   )
 }

@@ -28,10 +28,10 @@ const BrowserHome = () => {
             </div>
             <div className='botones'>
                 <Button onClick={handleLogin} startIcon={<LoginIcon fontSize="small" />}>
-                    Iniciar sesión
+                    <span className="btn-text">Iniciar sesión</span>
                 </Button>
                 <Button className="btn--outline" onClick={handleRegister} startIcon={<PersonAddIcon fontSize="small" />}>
-                    Registrarse
+                    <span className="btn-text">Registrarse</span>
                 </Button>
             </div>
         </nav>
