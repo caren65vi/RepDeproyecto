@@ -11,16 +11,71 @@
   overflow: hidden;
 }
 
-/* ── Logo ── */
-.navUserLogo {
-  padding: 20px 20px 24px;
+/* ── Branding ── */
+.navUserBrand {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 18px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
 }
 
-.navUserLogoImg {
-  height: 34px;
-  object-fit: contain;
+.navUserBrandText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navUserBrandLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--textSubtle);
+}
+
+.navUserBrandTitle {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.navUserBrandSub {
+  font-size: 11.5px;
+  color: var(--textMuted);
+  line-height: 1.4;
+}
+
+/* Botón cerrar: oculto en desktop, visible en móvil */
+.navUserClose {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--textMuted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  line-height: 0;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.navUserClose:hover {
+  color: var(--text);
+  background: var(--surfaceSoft);
+}
+
+/* ── Barra móvil (oculta en desktop) ── */
+.navUserMobileBar {
+  display: none;
+}
+
+/* ── Overlay (oculto en desktop) ── */
+.navUserOverlay {
+  display: none;
 }
 
 /* ── Scrollable body ── */
@@ -51,7 +106,7 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent-light);
+  color: var(--accentLight);
   padding: 12px 12px 6px;
 }
 
@@ -73,19 +128,19 @@
   padding: 12px 14px;
   border-radius: 12px;
   text-decoration: none;
-  color: var(--text-muted);
+  color: var(--textMuted);
   font-size: 15px;
   font-weight: 600;
   transition: background 0.2s, color 0.2s;
 }
 
 .navUserLink:hover {
-  background: rgba(96, 165, 250, 0.12);
+  background: var(--accentSoft);
   color: var(--text);
 }
 
 .navUserLinkActive {
-  background: rgba(96, 165, 250, 0.2);
+  background: var(--accentActive);
   color: var(--accent);
 }
 
@@ -114,16 +169,22 @@
 /* ── User area ── */
 .navUserUser {
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 12px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.navUserUserRow {
+  display: flex;
   align-items: center;
   gap: 10px;
-  padding: 16px 18px;
-  border-top: 1px solid var(--border);
-  min-height: 72px;
+  padding: 0 4px;
 }
 
 .navUserAvatar {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
@@ -140,11 +201,13 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  gap: 2px;
+  gap: 1px;
+  flex: 1;
+  min-width: 0;
 }
 
 .navUserUserName {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--text);
   white-space: nowrap;
@@ -153,9 +216,114 @@
 }
 
 .navUserUserEmail {
-  font-size: 13px;
-  color: var(--text-muted);
+  font-size: 11.5px;
+  color: var(--textMuted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.navUserSignOut {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--textMuted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+}
+
+.navUserSignOut:hover {
+  background: var(--dangerSoft);
+  color: var(--dangerHover);
+  border-color: var(--dangerBorder);
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE — MÓVIL (≤768px)
+══════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Barra fija en la parte superior */
+  .navUserMobileBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    padding: 0 16px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    z-index: 98;
+  }
+
+  .navUserMobileTitle {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+
+  .navUserHamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: var(--textMuted);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 10px;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .navUserHamburger:hover {
+    background: var(--surfaceSoft);
+    color: var(--text);
+  }
+
+  /* Sidebar: oculto fuera de pantalla */
+  .navUser {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 260px;
+    min-width: 260px;
+    height: 100dvh;
+    z-index: 100;
+    transition: left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: none;
+  }
+
+  /* Drawer abierto */
+  .navUserOpen {
+    left: 0;
+    box-shadow: var(--navShadow);
+  }
+
+  /* Mostrar botón X dentro del nav */
+  .navUserClose {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Overlay oscuro detrás del drawer */
+  .navUserOverlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: var(--overlayBg);
+    backdrop-filter: blur(2px);
+    z-index: 99;
+  }
 }

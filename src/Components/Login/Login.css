@@ -9,10 +9,10 @@
 .login-wrapper {
   min-height: 100dvh;
   width: 100%;
-  background: linear-gradient(135deg, #05080f 0%, #12172d 50%, #081021 100%);
+  background: var(--loginBg);
   background-image:
-    radial-gradient(ellipse at 20% 50%, rgba(29, 78, 216, 0.14) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 20%, rgba(96, 165, 250, 0.1) 0%, transparent 50%);
+    var(--loginGlowLeft),
+    var(--loginGlowRight);
   background-attachment: fixed;
   display: flex;
   align-items: center;
@@ -56,11 +56,11 @@
 .login-wrapper .MuiContainer-root > .MuiStack-root,
 .login-wrapper .MuiCard-root,
 .login-wrapper .MuiPaper-root {
-  background: rgba(15, 21, 38, 0.96) !important;
+  background: var(--loginCardBg) !important;
   background-image: none !important;
-  border: 1px solid rgba(96, 165, 250, 0.18) !important;
+  border: 1px solid var(--border) !important;
   border-radius: 16px !important;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.35) !important;
+  box-shadow: var(--shadow) !important;
   width: 100% !important;
   max-width: 520px !important;
   padding: 3.2rem 2.8rem !important;
@@ -73,7 +73,7 @@
 .login-wrapper h6,
 .login-wrapper .MuiTypography-h5,
 .login-wrapper .MuiTypography-h6 {
-  color: #e2e8f0 !important;
+  color: var(--text) !important;
   font-weight: 700 !important;
 }
 
@@ -87,82 +87,82 @@
 
 .login-wrapper .MuiTypography-body2,
 .login-wrapper .MuiTypography-subtitle1 {
-  color: #94a3b8 !important;
+  color: var(--textMuted) !important;
 }
 
 
 
 .login-wrapper .MuiOutlinedInput-root {
-  background-color: #0d1117 !important;
+  background-color: var(--loginFieldBg) !important;
   border-radius: 8px !important;
-  color: #e2e8f0 !important;
+  color: var(--text) !important;
   min-height: 48px !important;
 }
 
 
 .login-wrapper .MuiOutlinedInput-root fieldset {
-  border-color: #2d3f6e !important;
+  border-color: var(--border) !important;
 }
 
 
 .login-wrapper .MuiOutlinedInput-root:hover fieldset {
-  border-color: #60a5fa !important;
+  border-color: var(--accent) !important;
 }
 
 
 .login-wrapper .MuiOutlinedInput-root.Mui-focused fieldset {
-  border-color: #1d4ed8 !important;
+  border-color: var(--primary) !important;
   border-width: 2px !important;
 }
 
 
 .login-wrapper .MuiInputLabel-root {
-  color: #64748b !important;
+  color: var(--textSubtle) !important;
 }
 
 
 .login-wrapper .MuiInputLabel-root.Mui-focused {
-  color: #60a5fa !important;
+  color: var(--accent) !important;
 }
 
 
 .login-wrapper input {
-  color: #e2e8f0 !important;
+  color: var(--text) !important;
 }
 
 
 .login-wrapper input::placeholder {
-  color: #475569 !important;
+  color: var(--loginPlaceholder) !important;
   opacity: 1;
 }
 
 
 
 .login-wrapper .MuiButton-containedPrimary {
-  background: linear-gradient(135deg, #1f4ed8 0%, #1f5bb0 100%) !important;
-  color: #ffffff !important;
+  background: var(--loginButtonBg) !important;
+  color: var(--primaryContrast) !important;
   font-weight: 700 !important;
   border-radius: 10px !important;
   text-transform: none !important;
   font-size: 1rem !important;
   padding: 14px 20px !important;
-  box-shadow: 0 6px 18px rgba(15, 67, 128, 0.4), 0 0 10px rgba(59, 130, 246, 0.12) !important;
+  box-shadow: var(--loginButtonShadow) !important;
   transition: all 0.3s cubic-bezier(0.2, 0.9, 0.2, 1) !important;
   letter-spacing: 0.3px;
 }
 
 
 .login-wrapper .MuiButton-containedPrimary:hover {
-  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%) !important;
-  box-shadow: 0 10px 35px rgba(29, 78, 216, 0.6), 0 0 30px rgba(96, 165, 250, 0.25) !important;
+  background: var(--loginButtonHoverBg) !important;
+  box-shadow: var(--loginButtonHoverShadow) !important;
   transform: translateY(-2px);
 }
 
 
 .login-wrapper .MuiButton-outlined,
 .login-wrapper .MuiButton-outlinedPrimary {
-  border-color: #2d3f6e !important;
-  color: #e2e8f0 !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
   font-weight: 500 !important;
   border-radius: 8px !important;
   text-transform: none !important;
@@ -174,26 +174,26 @@
 
 .login-wrapper .MuiButton-outlined:hover,
 .login-wrapper .MuiButton-outlinedPrimary:hover {
-  border-color: #60a5fa !important;
-  background-color: rgba(96, 165, 250, 0.08) !important;
-  color: #60a5fa !important;
+  border-color: var(--accent) !important;
+  background-color: var(--accentSoft) !important;
+  color: var(--accent) !important;
 }
 
 
 
 .login-wrapper .MuiDivider-root {
-  border-color: #2d3f6e !important;
+  border-color: var(--border) !important;
 }
 
 
 .login-wrapper .MuiDivider-root::before,
 .login-wrapper .MuiDivider-root::after {
-  border-color: #2d3f6e !important;
+  border-color: var(--border) !important;
 }
 
 
 .login-wrapper .MuiDivider-wrapper {
-  color: #475569 !important;
+  color: var(--loginDividerText) !important;
   font-size: 0.85rem;
 }
 
@@ -201,20 +201,20 @@
 
 .login-wrapper a,
 .login-wrapper .MuiLink-root {
-  color: #60a5fa !important;
+  color: var(--accent) !important;
 }
 
 
 .login-wrapper a:hover,
 .login-wrapper .MuiLink-root:hover {
-  color: #93c5fd !important;
+  color: var(--accentLight) !important;
 }
 
 
 .login-wrapper .MuiAlert-root {
-  background-color: rgba(220, 38, 38, 0.15) !important;
-  border: 1px solid rgba(220, 38, 38, 0.35) !important;
-  color: #fca5a5 !important;
+  background-color: var(--loginAlertBg) !important;
+  border: 1px solid var(--dangerBorder) !important;
+  color: var(--loginAlertText) !important;
   border-radius: 10px !important;
 }
 

@@ -39,8 +39,8 @@ export default function Register() {
 
   return (
     <ThemeProvider theme={THEME}>
-      <Box className="register-wrapper">
-        <Paper className="register-card" elevation={8} component="form" onSubmit={handleRegister} noValidate>
+      <Box className="registerWrapper">
+        <Paper className="registerCard" elevation={8} component="form" onSubmit={handleRegister} noValidate>
           <Typography variant="h5" fontWeight={700} textAlign="center" mb={1}>
             Crear cuenta
           </Typography>

@@ -25,8 +25,8 @@ function generateId() {
   return `inc_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
 }
 
-const ALLOWED_TYPES = ['baño', 'infraestructura', 'seguridad'];
-const ALLOWED_STATES = ['abierto', 'en_proceso', 'cerrado'];
+const allowedTypes = ['baño', 'infraestructura', 'seguridad'];
+const allowedStates = ['abierto', 'en_proceso', 'cerrado'];
 
 /**
  * Valida un objeto incidence parcial.
@@ -36,7 +36,7 @@ function validateIncidence(payload = {}) {
   const errors = [];
 
   if (!payload.tipo) errors.push('El campo "tipo" es obligatorio.');
-  else if (!ALLOWED_TYPES.includes(payload.tipo)) errors.push(`Tipo no válido. Valores soportados: ${ALLOWED_TYPES.join(', ')}`);
+  else if (!allowedTypes.includes(payload.tipo)) errors.push(`Tipo no válido. Valores soportados: ${allowedTypes.join(', ')}`);
 
   if (!payload.foto) errors.push('La fotografía es obligatoria.');
 
@@ -47,7 +47,7 @@ function validateIncidence(payload = {}) {
   if (payload.latitud != null && typeof payload.latitud !== 'number') errors.push('La latitud debe ser un número.');
   if (payload.longitud != null && typeof payload.longitud !== 'number') errors.push('La longitud debe ser un número.');
 
-  if (payload.estado && !ALLOWED_STATES.includes(payload.estado)) errors.push(`Estado no válido. Valores: ${ALLOWED_STATES.join(', ')}`);
+  if (payload.estado && !allowedStates.includes(payload.estado)) errors.push(`Estado no válido. Valores: ${allowedStates.join(', ')}`);
 
   return { valid: errors.length === 0, errors };
 }
@@ -82,8 +82,8 @@ function createIncidence(data = {}) {
 module.exports = {
   createIncidence,
   validateIncidence,
-  ALLOWED_TYPES,
-  ALLOWED_STATES,
+  allowedTypes,
+  allowedStates,
 };
 
 

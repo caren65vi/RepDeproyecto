@@ -5,9 +5,9 @@ import './UserLayout.css'
 
 const UserLayout = () => {
   return (
-    <div className="user-layout">
+    <div className="userLayout">
       <NavUser />
-      <main className="user-layout__content">
+      <main className="userLayoutContent">
         <Outlet />
       </main>
     </div>

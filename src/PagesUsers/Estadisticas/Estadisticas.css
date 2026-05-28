@@ -1,11 +1,11 @@
-.estadisticas__title {
+.estadisticasTitle {
   font-size: 24px;
   font-weight: 700;
   color: var(--text);
   margin-bottom: 8px;
 }
 
-.estadisticas__subtitle {
+.estadisticasSubtitle {
   font-size: 14px;
-  color: var(--text-muted);
+  color: var(--textMuted);
 }

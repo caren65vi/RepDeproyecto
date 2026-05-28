@@ -4,8 +4,8 @@ import './Estadisticas.css'
 const Estadisticas = () => {
   return (
     <div className="estadisticas">
-      <h1 className="estadisticas__title">Estadísticas</h1>
-      <p className="estadisticas__subtitle">Visualiza métricas de tus incidentes</p>
+      <h1 className="estadisticasTitle">Estadísticas</h1>
+      <p className="estadisticasSubtitle">Visualiza métricas de tus incidentes</p>
     </div>
   )
 }

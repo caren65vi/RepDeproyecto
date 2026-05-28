@@ -1,121 +1,190 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
+/* ── Main container (mobile-first: column) ── */
 main {
-    width: 100%;
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 20px;
-
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 main hr {
-    width: 85%;
-    height: 2px;
-    border: none;
-    background-color: var(--accent);
+  width: 85%;
+  height: 2px;
+  border: none;
+  background-color: var(--accent);
+  margin: 0 auto;
 }
 
+/* ── Badge ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accentSoft);
+  border: 1px solid rgba(2, 132, 199, 0.28);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* ── Information ── */
 .information {
-    width: 100%;
-    height: 50vh;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    gap: 20px;
-    padding: 2rem 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 2rem 1.25rem 1.5rem;
 }
-
-
 
 .information h1 {
-    font-size: 2.6rem;
-    line-height: 1.15;
-    color: var(--text);
-    font-weight: 700;
+  font-size: 1.9rem;
+  line-height: 1.2;
+  color: var(--text);
+  font-weight: 700;
 }
 
 .information h1 strong {
-    color: var(--accent);
+  color: var(--accent);
 }
 
 .information p {
-    font-size: 1.05rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-    text-align: left;
+  font-size: 0.97rem;
+  color: var(--textMuted);
+  line-height: 1.7;
 }
 
+/* Mobile: buttons stacked vertically, full width */
 .information .buttons {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: row;
-    gap: 14px;
-    margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+  margin-top: 0.5rem;
 }
 
+.information .buttons > * {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ── Additional info ── */
 .additionalInfo {
-    width: 100%;
-    height: 50vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 12px;
-    padding: 2.5rem 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 1.5rem 1.25rem 2rem;
 }
 
 .additionalInfo div {
-    width: 100%;
-    height: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;    
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--cardShadow);
 }
 
+/* ══════════════════════════════════════
+   TABLET (768px – 1024px)
+══════════════════════════════════════ */
 @media (min-width: 768px) and (max-width: 1024px) {
-    main {
-        flex-direction: column;
-    }
+  .information {
+    padding: 3rem 3rem 2rem;
+    gap: 20px;
+  }
 
-    .information,
-    .additionalInfo {
-        width: 100%;
-        height: auto;
-    }
+  .information h1 {
+    font-size: 2.3rem;
+  }
+
+  .information p {
+    font-size: 1rem;
+    max-width: 600px;
+  }
+
+  /* Tablet: buttons side by side */
+  .information .buttons {
+    flex-direction: row;
+    width: auto;
+    align-items: center;
+  }
+
+  .information .buttons > * {
+    width: auto;
+  }
+
+  /* Tablet: cards 2-column grid */
+  .additionalInfo {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1.5rem 3rem 3rem;
+  }
+
+  .additionalInfo div {
+    flex: 1 1 calc(50% - 6px);
+    min-height: 130px;
+  }
+
+  .additionalInfo div:last-child:nth-child(odd) {
+    flex: 1 1 100%;
+  }
 }
 
-
+/* ══════════════════════════════════════
+   DESKTOP (≥1025px)
+══════════════════════════════════════ */
 @media (min-width: 1025px) {
-    main {
-        flex-direction: row;
-        align-items: stretch;
-    }
+  main {
+    flex-direction: row;
+    align-items: stretch;
+  }
 
-    .information {
-        width: 50%;
-        height: auto;
-    }
+  .information {
+    width: 50%;
+    padding: 4rem 3rem 4rem 4rem;
+    gap: 22px;
+  }
 
-    .additionalInfo {
-        width: 50%;
-        height: auto;
-    }
+  .information h1 {
+    font-size: 2.6rem;
+  }
 
-    main hr {
-        display: none;
-    }
+  .information .buttons {
+    flex-direction: row;
+    width: auto;
+    align-items: center;
+  }
+
+  .information .buttons > * {
+    width: auto;
+  }
+
+  .additionalInfo {
+    width: 50%;
+    padding: 4rem 4rem 4rem 2rem;
+    flex-direction: column;
+  }
+
+  .additionalInfo div {
+    min-height: 0;
+    flex: 1;
+  }
+
+  main hr {
+    display: none;
+  }
 }

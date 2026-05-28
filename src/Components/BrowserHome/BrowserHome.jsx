@@ -18,20 +18,20 @@ const BrowserHome = () => {
     }
 
     return (
-        <nav className='browser-home'>
-            <div className='icono'>
+        <nav className='browserHome'>
+            <div className='browserHomeIcon'>
                 <img src={icono} alt='Logo principal de la pagina' />
             </div>
-            <div className='titulo'>
+            <div className='browserHomeTitle'>
                 <h3>Reporta el chisme</h3>
                 <p>Universidad de la Amazonia</p>
             </div>
-            <div className='botones'>
+            <div className='browserHomeButtons'>
                 <Button onClick={handleLogin} startIcon={<LoginIcon fontSize="small" />}>
-                    <span className="btn-text">Iniciar sesión</span>
+                    <span className="btnText">Iniciar sesión</span>
                 </Button>
-                <Button className="btn--outline" onClick={handleRegister} startIcon={<PersonAddIcon fontSize="small" />}>
-                    <span className="btn-text">Registrarse</span>
+                <Button className="btnOutline" onClick={handleRegister} startIcon={<PersonAddIcon fontSize="small" />}>
+                    <span className="btnText">Registrarse</span>
                 </Button>
             </div>
         </nav>

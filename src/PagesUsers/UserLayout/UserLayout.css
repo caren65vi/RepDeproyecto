@@ -1,12 +1,22 @@
-.user-layout {
+.userLayout {
   display: flex;
   min-height: 100vh;
   background: var(--bg);
 }
 
-.user-layout__content {
+.userLayoutContent {
   flex: 1;
   overflow-y: auto;
   padding: 32px;
   color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .userLayout {
+    flex-direction: column;
+  }
+
+  .userLayoutContent {
+    padding: calc(56px + 24px) 16px 24px;
+  }
 }

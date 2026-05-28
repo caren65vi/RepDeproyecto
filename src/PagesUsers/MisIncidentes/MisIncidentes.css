@@ -1,11 +1,11 @@
-.mis-incidentes__title {
+.misIncidentesTitle {
   font-size: 24px;
   font-weight: 700;
   color: var(--text);
   margin-bottom: 8px;
 }
 
-.mis-incidentes__subtitle {
+.misIncidentesSubtitle {
   font-size: 14px;
-  color: var(--text-muted);
+  color: var(--textMuted);
 }

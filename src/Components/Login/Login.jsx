@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { SignInPage } from '@toolpad/core/SignInPage';
 import { createTheme } from '@mui/material/styles';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, useMediaQuery } from '@mui/material';
 import { signIn as firebaseSignIn, signInGoogle,  onAuthChange, doSignOut } from '../../FireBase/auth';
 import { getDoc, doc } from 'firebase/firestore';
 import { db } from '../../FireBase/config';
@@ -31,10 +31,15 @@ const Login = () => {
   const [sessionData, setSessionData] = React.useState(null);
   const [cargando, setCargando] = React.useState(true);
   const navigate = useNavigate();
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const themeMode = prefersDarkMode ? 'dark' : 'light';
 
-  const THEME = createTheme({
-    palette: { mode: 'dark' },
-  });
+  const appTheme = React.useMemo(
+    () => createTheme({
+      palette: { mode: themeMode },
+    }),
+    [themeMode],
+  );
 
   const localeText = {
     signInTitle: 'Inicio sesión',
@@ -117,7 +122,7 @@ const Login = () => {
   }
 
   return (
-    <AppProvider theme={THEME}>
+    <AppProvider theme={appTheme}>
       <div className="login-wrapper">
         <SignInPage
           signIn={signIn}

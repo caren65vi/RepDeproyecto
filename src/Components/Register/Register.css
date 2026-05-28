@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.register-wrapper {
+.registerWrapper {
   min-height: 100vh;
   width: 100vw;
   background-color: #0d1117;
@@ -17,7 +17,7 @@
   padding: 2rem 1.5rem;
 }
 
-.register-card {
+.registerCard {
   background-color: #1a2540 !important;
   border: 1px solid #2d3f6e !important;
   border-radius: 18px !important;
@@ -27,7 +27,7 @@
 }
 
 @media (max-width: 480px) {
-  .register-card {
+  .registerCard {
     padding: 2rem 1.25rem;
     border-radius: 14px !important;
   }

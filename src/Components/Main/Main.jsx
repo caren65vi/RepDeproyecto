@@ -23,7 +23,7 @@ const Main = () => {
 
                 <div className="buttons">
                     <Button startIcon={<AddIcon fontSize="small" />}>Reportar incidente</Button>
-                    <Button className="btn--outline" startIcon={<VisibilityIcon fontSize="small" />}>Ver incidentes</Button>
+                    <Button className="btnOutline" startIcon={<VisibilityIcon fontSize="small" />}>Ver incidentes</Button>
                 </div>
 
             </section>

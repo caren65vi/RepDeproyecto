@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.browser-home {
+.browserHome {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,22 +15,22 @@
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
 }
 
-.browser-home .icono {
+.browserHomeIcon {
   flex-shrink: 0;
 }
 
-.browser-home .icono img {
+.browserHomeIcon img {
   width: 56px;
   height: 56px;
   object-fit: contain;
   border-radius: 10px;
 }
 
-.browser-home .titulo {
+.browserHomeTitle {
   flex: 1;
 }
 
-.browser-home .titulo h3 {
+.browserHomeTitle h3 {
   margin: 0;
   font-size: 22px;
   color: var(--text);
@@ -38,82 +38,78 @@
   letter-spacing: 0.01em;
 }
 
-.browser-home .titulo p {
+.browserHomeTitle p {
   margin: 3px 0 0 0;
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--textMuted);
 }
 
-.browser-home .botones {
+.browserHomeButtons {
   display: flex;
   gap: 12px;
   flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
-  .browser-home {
+  .browserHome {
     padding: 12px 20px;
     gap: 10px;
   }
 
-  .browser-home .icono img {
+  .browserHomeIcon img {
     width: 44px;
     height: 44px;
   }
 
-  .browser-home .titulo h3 {
+  .browserHomeTitle h3 {
     font-size: 17px;
   }
 
-  .browser-home .titulo p {
+  .browserHomeTitle p {
     font-size: 12px;
   }
 
-  .browser-home .botones {
-    gap: 8px;
-  }
-
-  .browser-home .botones .btn {
+  .browserHomeButtons .btn {
     padding: 9px 12px;
     gap: 0;
   }
 
-  .btn-text {
+  .btnText {
     display: none;
   }
 }
 
 @media (max-width: 480px) {
-  .browser-home {
+  .browserHome {
     padding: 16px 18px;
     gap: 12px;
   }
 
-  .browser-home .icono img {
+  .browserHomeIcon img {
     width: 52px;
     height: 52px;
   }
 
-  .browser-home .titulo h3 {
+  .browserHomeTitle h3 {
     font-size: 20px;
   }
 
-  .browser-home .titulo p {
+  .browserHomeTitle p {
     font-size: 13px;
   }
 
-  .browser-home .botones {
+  .browserHomeButtons {
     gap: 10px;
     flex-shrink: 0;
   }
 
-  .browser-home .botones .btn {
+  .browserHomeButtons .btn {
     padding: 12px 14px;
     gap: 0;
     font-size: 1.1rem;
   }
 
-  .btn-text {
+  .btnText {
     display: none;
   }
 }

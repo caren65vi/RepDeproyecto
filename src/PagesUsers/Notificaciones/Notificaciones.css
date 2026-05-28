@@ -1,11 +1,11 @@
-.notificaciones__title {
+.notificacionesTitle {
   font-size: 24px;
   font-weight: 700;
   color: var(--text);
   margin-bottom: 8px;
 }
 
-.notificaciones__subtitle {
+.notificacionesSubtitle {
   font-size: 14px;
-  color: var(--text-muted);
+  color: var(--textMuted);
 }
