@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { SignInPage } from '@toolpad/core/SignInPage';
 import { createTheme } from '@mui/material/styles';
@@ -29,6 +30,7 @@ const traducirError = (code) => {
 const Login = () => {
   const [sessionData, setSessionData] = React.useState(null);
   const [cargando, setCargando] = React.useState(true);
+  const navigate = useNavigate();
 
   const THEME = createTheme({
     palette: { mode: 'dark' },
@@ -58,13 +60,16 @@ const Login = () => {
           ? snap.data()
           : { rol: 'usuario', email: firebaseUser.email, nombre: firebaseUser.displayName };
         setSessionData({ user: firebaseUser, userData });
+        if (userData.rol !== 'admin') {
+          navigate('/dashboard');
+        }
       } else {
         setSessionData(null);
       }
       setCargando(false);
     });
     return unsubscribe;
-  }, []);
+  }, [navigate]);
 
   const signIn = async (provider, formData) => {
     try {
@@ -94,12 +99,19 @@ const Login = () => {
   }
 
   if (sessionData) {
-    // Aquí va tu dashboard según el rol
+    if (sessionData.userData?.rol === 'admin') {
+      return (
+        <div className="login-session">
+          <p>Bienvenido administrador: {sessionData.userData?.nombre || sessionData.userData?.email}</p>
+          <p>Este dashboard es solo para usuarios normales.</p>
+          <button onClick={doSignOut}>Cerrar sesión</button>
+        </div>
+      );
+    }
+
     return (
-      <div className="login-session">
-        <p>Bienvenido: {sessionData.userData?.nombre || sessionData.userData?.email}</p>
-        <p>Rol: {sessionData.userData?.rol}</p>
-        <button onClick={doSignOut}>Cerrar sesión</button>
+      <div className="login-loading">
+        <p>Redirigiendo al dashboard...</p>
       </div>
     );
   }

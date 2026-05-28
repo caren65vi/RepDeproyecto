@@ -1,0 +1,161 @@
+.navUser {
+  width: 240px;
+  min-width: 240px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* ── Logo ── */
+.navUserLogo {
+  padding: 20px 20px 24px;
+  display: flex;
+  align-items: center;
+}
+
+.navUserLogoImg {
+  height: 34px;
+  object-fit: contain;
+}
+
+/* ── Scrollable body ── */
+.navUserBody {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 8px;
+  scrollbar-width: none;
+}
+
+.navUserBody::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Section ── */
+.navUserSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navUserSectionTitle {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  padding: 12px 12px 6px;
+}
+
+/* ── List ── */
+.navUserList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+/* ── Link ── */
+.navUserLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 15px;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navUserLink:hover {
+  background: rgba(96, 165, 250, 0.12);
+  color: var(--text);
+}
+
+.navUserLinkActive {
+  background: rgba(96, 165, 250, 0.2);
+  color: var(--accent);
+}
+
+.navUserLinkActive .navUserIcon {
+  color: var(--accent);
+}
+
+/* ── Icon ── */
+.navUserIcon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.navUserIcon .MuiSvgIcon-root {
+  font-size: 19px !important;
+}
+
+/* ── Label ── */
+.navUserLabel {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── User area ── */
+.navUserUser {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 18px;
+  border-top: 1px solid var(--border);
+  min-height: 72px;
+}
+
+.navUserAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--border);
+}
+
+.navUserAvatarIcon {
+  font-size: 36px !important;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.navUserUserInfo {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  gap: 2px;
+}
+
+.navUserUserName {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navUserUserEmail {
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

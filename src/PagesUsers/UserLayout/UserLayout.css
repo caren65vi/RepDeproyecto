@@ -1,0 +1,12 @@
+.user-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.user-layout__content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px;
+  color: var(--text);
+}
