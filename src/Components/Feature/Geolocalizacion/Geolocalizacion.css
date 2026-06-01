@@ -1,0 +1,127 @@
+.geo-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.geo-modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.geo-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.geo-modal__header h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.geo-modal__close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.geo-modal__close:hover {
+    background: var(--border);
+}
+
+/* Zona de estado */
+.geo-modal__status {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+.geo-modal__coords {
+    background: rgba(96, 165, 250, 0.08);
+    border: 1px solid rgba(96, 165, 250, 0.2);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.geo-modal__coords span {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.geo-modal__actions {
+    display: flex;
+    gap: 10px;
+}
+
+.geo-modal__actions button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.geo-modal__actions button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.geo-modal__btn-maps {
+    background: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: white !important;
+}
+
+.geo-modal__btn-maps:hover {
+    background: var(--primary-hover) !important;
+    color: white !important;
+}
+
+.geo-modal__btn-maps:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}

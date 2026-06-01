@@ -1,0 +1,122 @@
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal__header h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.modal__close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.modal__close:hover {
+    background: var(--border);
+}
+
+/* Zona de previsualización / drop */
+.modal__preview {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    overflow: hidden;
+}
+
+.modal__preview:hover {
+    border-color: var(--accent);
+}
+
+.modal__preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.modal__actions {
+    display: flex;
+    gap: 10px;
+}
+
+.modal__actions button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.modal__actions button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.modal__btn-confirm {
+    background: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: white !important;
+}
+
+.modal__btn-confirm:hover {
+    background: var(--primary-hover) !important;
+    color: white !important;
+}
+
+.modal__btn-confirm:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}

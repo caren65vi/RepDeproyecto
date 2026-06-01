@@ -1,9 +1,11 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './Feature.css'
 import CameraAltIcon from '@mui/icons-material/CameraAlt'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import AutorenewIcon from '@mui/icons-material/Autorenew'
 import NotificationsIcon from '@mui/icons-material/Notifications'
+import FotoIncidente from '../Feature/FotoIncidente/FotoIncidente'
+import Geolocalizacion from '../Feature/Geolocalizacion/Geolocalizacion'
 
 const features = [
     {
@@ -28,13 +30,20 @@ const features = [
     },
 ]
 
+const handlers = (i, setModalFoto, setModalGeo) => {
+    if (i === 0) return () => setModalFoto(true)
+    if (i === 1) return () => setModalGeo(true)
+    return undefined
+}
+
 const Feature = () => {
     const gridRef = useRef(null)
+    const [modalFoto, setModalFoto] = useState(false)
+    const [modalGeo, setModalGeo] = useState(false)
 
     useEffect(() => {
         const cards = gridRef.current?.querySelectorAll('.feature-card')
         if (!cards?.length) return undefined
-
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -45,7 +54,6 @@ const Feature = () => {
             },
             { threshold: 0.2 },
         )
-
         cards.forEach((card) => observer.observe(card))
         return () => observer.disconnect()
     }, [])
@@ -60,7 +68,12 @@ const Feature = () => {
 
             <div className="features__grid" ref={gridRef}>
                 {features.map((f, i) => (
-                    <div className="feature-card" key={i} style={{ '--feature-delay': `${i * 140}ms` }}>
+                    <div
+                        className="feature-card"
+                        key={i}
+                        style={{ '--feature-delay': `${i * 140}ms` }}
+                        onClick={handlers(i, setModalFoto, setModalGeo)}
+                    >
                         <div className="feature-card__icon">{f.icon}</div>
                         <div>
                             <p className="feature-card__title">{f.title}</p>
@@ -69,6 +82,20 @@ const Feature = () => {
                     </div>
                 ))}
             </div>
+
+            {modalFoto && (
+                <FotoIncidente
+                    onClose={() => setModalFoto(false)}
+                    onConfirm={(foto) => console.log('Foto seleccionada:', foto)}
+                />
+            )}
+
+            {modalGeo && (
+                <Geolocalizacion
+                    onClose={() => setModalGeo(false)}
+                    onConfirm={(coords) => console.log('Coordenadas:', coords)}
+                />
+            )}
         </section>
     )
 }
