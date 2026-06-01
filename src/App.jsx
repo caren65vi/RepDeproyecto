@@ -4,6 +4,7 @@ import Login from './Components/Login/Login.jsx'
 import BrowserHome from './Components/BrowserHome/BrowserHome.jsx'
 import Main from './Components/Main/Main.jsx'
 import Feature from './Components/Feature/Feature.jsx'
+import Pasos from './Components/Pasos/Pasos.jsx'
 import UserLayout from './PagesUsers/UserLayout/UserLayout'
 import Dashboard from './PagesUsers/Dashboard/Dashboard'
 import Reportar from './PagesUsers/Reportar/Reportar'
@@ -15,7 +16,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<><BrowserHome /><Main /><Feature /></>} />
+        <Route path="/" element={<><BrowserHome /><Main /><Feature /><Pasos /></>} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<UserLayout />}>
           <Route index element={<Dashboard />} />
