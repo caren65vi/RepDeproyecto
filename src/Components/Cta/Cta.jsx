@@ -2,7 +2,7 @@ import './Cta.css';
 import { useNavigate } from 'react-router-dom';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
-import Button from '../Button/Button';
+import Button from '../Button/Button.jsx';
 
 export default function CTA() {
     const navigate = useNavigate();

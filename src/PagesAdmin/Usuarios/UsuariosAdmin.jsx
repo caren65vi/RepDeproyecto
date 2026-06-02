@@ -7,7 +7,7 @@ import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
 import ShieldOutlinedIcon from '@mui/icons-material/ShieldOutlined'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined'
-import TarjetaUsuario from '../../Components/TarjetaUsuario/TarjetaUsuario'
+import TarjetaUsuario from '../../Components/TarjetaUsuario/TarjetaUsuario.jsx'
 import './UsuariosAdmin.css'
 
 const ROL_META = {

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
-import IncidentNotifier from '../../Components/IncidentNotifier/IncidentNotifier'
-import ModalSetPassword from '../../Components/ModalSetPassword/ModalSetPassword'
-import NavAdmin from '../NavAdmin/NavAdmin'
+import IncidentNotifier from '../../Components/IncidentNotifier/IncidentNotifier.jsx'
+import ModalSetPassword from '../../Components/ModalSetPassword/ModalSetPassword.jsx'
+import NavAdmin from '../NavAdmin/NavAdmin.jsx'
 import { onAuthChange, fetchRolByUid } from '../../FireBase/auth'
 import './AdminLayout.css'
 

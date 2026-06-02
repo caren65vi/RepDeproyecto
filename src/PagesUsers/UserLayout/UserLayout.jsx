@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
-import NavUser from '../Navuser/NavUser'
-import IncidentNotifier from '../../Components/IncidentNotifier/IncidentNotifier'
-import ModalSetPassword from '../../Components/ModalSetPassword/ModalSetPassword'
+import NavUser from '../Navuser/NavUser.jsx'
+import IncidentNotifier from '../../Components/IncidentNotifier/IncidentNotifier.jsx'
+import ModalSetPassword from '../../Components/ModalSetPassword/ModalSetPassword.jsx'
 import { onAuthChange, fetchRolByUid } from '../../FireBase/auth'
 import './UserLayout.css'
 

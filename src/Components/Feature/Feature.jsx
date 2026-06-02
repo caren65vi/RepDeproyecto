@@ -4,8 +4,8 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import AutorenewIcon from '@mui/icons-material/Autorenew'
 import NotificationsIcon from '@mui/icons-material/Notifications'
-import FotoIncidente from '../Feature/FotoIncidente/FotoIncidente'
-import Geolocalizacion from '../Feature/Geolocalizacion/Geolocalizacion'
+import FotoIncidente from '../Feature/FotoIncidente/FotoIncidente.jsx'
+import Geolocalizacion from '../Feature/Geolocalizacion/Geolocalizacion.jsx'
 
 const features = [
     {

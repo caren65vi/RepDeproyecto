@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import LoginIcon from '@mui/icons-material/Login'
 import PersonAddIcon from '@mui/icons-material/PersonAdd'
 import icono from '../../assets/LogoPrincipal.png'
-import Button from '../Button/Button'
+import Button from '../Button/Button.jsx'
 import './BrowserHome.css'
 
 const BrowserHome = () => {

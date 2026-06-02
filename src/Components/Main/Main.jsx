@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import './Main.css'
-import Button from '../Button/Button'
+import Button from '../Button/Button.jsx'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import AddIcon from '@mui/icons-material/Add'
 import VisibilityIcon from '@mui/icons-material/Visibility'
-import LatestIncidents from './LatestIncidents'
-import Datos from '../Datos/Datos'
+import LatestIncidents from './LatestIncidents.jsx'
+import Datos from '../Datos/Datos.jsx'
 
 const Main = () => {
     const navigate = useNavigate()

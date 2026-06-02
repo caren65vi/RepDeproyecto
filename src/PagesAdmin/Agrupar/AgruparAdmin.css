@@ -5,7 +5,7 @@
   max-width: 1100px;
 }
 
-/* ── Encabezado ── */
+
 .agradm__header {
   align-items: flex-start;
   background: var(--surface);
@@ -50,7 +50,7 @@
 .agradm__stat--grupos { border-color: rgba(22,149,134,0.35); }
 .agradm__stat--grupos .agradm__stat-num { color: var(--accent); }
 
-/* ── Tabs ── */
+
 .agradm__tabs {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -96,7 +96,7 @@
   text-align: center;
 }
 
-/* ── Feedback ── */
+
 .agradm__feedback {
   border-radius: 10px;
   font-size: 14px;
@@ -107,7 +107,7 @@
 .agradm__feedback--ok  { background: rgba(11,117,14,0.10); color: #0B750E; border: 1px solid rgba(11,117,14,0.2); }
 .agradm__feedback--err { background: var(--dangerSoft); color: var(--danger); border: 1px solid var(--dangerBorder); }
 
-/* ── Panel ── */
+
 .agradm__panel {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -116,7 +116,7 @@
   overflow: hidden;
 }
 
-/* ── Barra de acción (selección activa) ── */
+
 .agradm__action-bar {
   align-items: center;
   background: var(--accentSoft);
@@ -183,7 +183,7 @@
 }
 .agradm__clear-btn:hover:not(:disabled) { background: var(--surfaceSoft); }
 
-/* ── Cabecera de lista ── */
+
 .agradm__list-header {
   align-items: center;
   background: var(--surfaceSoft);
@@ -198,7 +198,7 @@
 .agradm__list-header span:first-child { color: var(--text); }
 .agradm__list-hint { color: var(--textMuted); font-weight: 400; }
 
-/* ── Cabecera del panel de categorías ── */
+
 .agradm__cat-header {
   align-items: center;
   background: var(--surfaceSoft);
@@ -212,7 +212,7 @@
 
 .agradm__cat-header span:first-child { color: var(--text); }
 
-/* ── Lista de categorías (columna) ── */
+
 .agradm__cat-grid {
   display: flex;
   flex-direction: column;

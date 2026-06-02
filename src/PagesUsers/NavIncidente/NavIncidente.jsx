@@ -11,7 +11,7 @@ import SecurityIcon from '@mui/icons-material/Security'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined'
 import { useNavigate } from 'react-router-dom'
-import DetailsIncidents from '../../Components/DetailsIncidents/DetailsIncidents'
+import DetailsIncidents from '../../Components/DetailsIncidents/DetailsIncidents.jsx'
 import './NavIncidente.css'
 
 const TIPO_META = {

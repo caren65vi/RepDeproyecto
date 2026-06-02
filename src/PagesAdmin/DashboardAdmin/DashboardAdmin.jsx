@@ -16,7 +16,7 @@ import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined'
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined'
 import SyncAltIcon from '@mui/icons-material/SyncAlt'
 import { useNavigate } from 'react-router-dom'
-import DetalleIncidenteAdmin from '../../Components/DetalleIncidenteAdmin/DetalleIncidenteAdmin'
+import DetalleIncidenteAdmin from '../../Components/DetalleIncidenteAdmin/DetalleIncidenteAdmin.jsx'
 import './DashboardAdmin.css'
 
 const TIPO_META = {

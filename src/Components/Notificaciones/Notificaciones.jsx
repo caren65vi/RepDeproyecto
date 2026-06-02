@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import SyncAltIcon from '@mui/icons-material/SyncAlt'
-import NotifitorPlity from '../NotifitorPlity/NotifitorPlity'
+import NotifitorPlity from '../NotifitorPlity/NotifitorPlity.jsx'
 import {
   clearNotificationHistory,
   getNotificationHistory,

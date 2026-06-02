@@ -11,7 +11,7 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined'
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
 import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined'
 import { db } from '../../FireBase/config'
-import DetalleIncidenteAdmin from '../../Components/DetalleIncidenteAdmin/DetalleIncidenteAdmin'
+import DetalleIncidenteAdmin from '../../Components/DetalleIncidenteAdmin/DetalleIncidenteAdmin.jsx'
 import './IncidentesAdmin.css'
 
 const TIPO_META = {

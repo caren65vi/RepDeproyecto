@@ -10,7 +10,7 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
 import EditIcon from '@mui/icons-material/Edit'
 import SaveIcon from '@mui/icons-material/Save'
 import CloseIcon from '@mui/icons-material/Close'
-import ActPassword from '../ActPassword/ActPassword'
+import ActPassword from '../ActPassword/ActPassword.jsx'
 import './DatosPersonales.css'
 
 const DatosPersonales = () => {

@@ -1,4 +1,4 @@
-/* ── Contenedor principal ── */
+
 .usadm {
   display: flex;
   flex-direction: column;
@@ -6,7 +6,7 @@
   max-width: 1200px;
 }
 
-/* ── Encabezado ── */
+
 .usadm__header {
   align-items: flex-start;
   background: var(--surface);
