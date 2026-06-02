@@ -6,8 +6,6 @@ import {
 } from 'firebase/firestore'
 import { db } from '../../FireBase/config'
 import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined'
-import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined'
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 import BoltIcon from '@mui/icons-material/Bolt'
 import OpacityIcon from '@mui/icons-material/Opacity'
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService'
@@ -59,43 +57,9 @@ const generateGrupoId = () => {
   catch { return `G${Date.now().toString(36).toUpperCase()}` }
 }
 
-/* ── Modal de categoría ── */
-const CategoriaModal = ({ tipo, incidentes, onClose, onGrupoCreado }) => {
-  const meta       = TIPO_META[tipo] ?? { label: tipo, icon: <HelpOutlineIcon />, cls: 'agradm__tipo--otro', color: '#8fa08e' }
-  const sinGrupo   = incidentes.filter(i => !i.grupoId)
-  const conGrupo   = incidentes.filter(i => i.grupoId)
-
-  const [selected, setSelected]   = useState(new Set())
-  const [nombre, setNombre]       = useState('')
-  const [saving, setSaving]       = useState(false)
-  const [feedback, setFeedback]   = useState(null)
-
-  const toggle = (id) => setSelected(prev => {
-    const next = new Set(prev)
-    next.has(id) ? next.delete(id) : next.add(id)
-    return next
-  })
-
-  const selAll = () => setSelected(new Set(sinGrupo.map(i => i.id)))
-  const deselAll = () => setSelected(new Set())
-
-  const crear = async () => {
-    if (selected.size < 2) { setFeedback('Selecciona al menos 2 incidentes para agrupar.'); return }
-    setSaving(true)
-    setFeedback(null)
-    try {
-      const grupoId = generateGrupoId()
-      const nombreFinal = nombre.trim() || `Grupo ${meta.label} ${grupoId}`
-      const batch = writeBatch(db)
-      selected.forEach(id => batch.update(doc(db, 'incidente', id), { grupoId, nombreGrupo: nombreFinal }))
-      await batch.commit()
-      onGrupoCreado?.(`Grupo "${nombreFinal}" creado con ${selected.size} incidentes.`)
-      onClose()
-    } catch {
-      setFeedback('Error al crear el grupo. Intenta de nuevo.')
-      setSaving(false)
-    }
-  }
+/* ── Modal de categoría — solo visualización ── */
+const CategoriaModal = ({ tipo, incidentes, onClose }) => {
+  const meta = TIPO_META[tipo] ?? { label: tipo, icon: <HelpOutlineIcon />, cls: 'agradm__tipo--otro', color: '#8fa08e' }
 
   const modal = (
     <div className="agradm__modal-backdrop" onClick={onClose}>
@@ -119,106 +83,41 @@ const CategoriaModal = ({ tipo, incidentes, onClose, onGrupoCreado }) => {
           </button>
         </header>
 
-        {/* Cuerpo */}
+        {/* Lista de incidentes */}
         <div className="agradm__modal-body">
-
-          {/* Sin grupo — seleccionables */}
-          {sinGrupo.length > 0 && (
-            <div className="agradm__modal-section">
-              <div className="agradm__modal-section-header">
-                <span className="agradm__modal-section-label">Sin agrupar ({sinGrupo.length})</span>
-                <div className="agradm__modal-selbtns">
-                  <button onClick={selAll}>Seleccionar todos</button>
-                  <button onClick={deselAll}>Limpiar</button>
+          {incidentes.length === 0 ? (
+            <div className="agradm__empty" style={{ padding: '32px' }}>
+              <span>No hay incidentes de esta categoría hoy.</span>
+            </div>
+          ) : (
+            incidentes.map((inc, idx) => {
+              const eNorm = normalizeState(inc.estado)
+              const eMeta = ESTADO_META[eNorm] ?? { label: eNorm, cls: 'agradm__badge--reportado' }
+              return (
+                <div key={inc.id} className="agradm__modal-row">
+                  <span className="agradm__modal-num">{idx + 1}</span>
+                  <div className="agradm__modal-row-info">
+                    <strong>{inc.descripcion ?? '(sin descripción)'}</strong>
+                    <span>
+                      <LocationOnOutlinedIcon fontSize="inherit" />
+                      {inc.ubicacionTextual || '—'}
+                      &nbsp;·&nbsp;
+                      {fmtHora(inc.createdAt ?? inc.fecha)}
+                    </span>
+                    {inc.grupoId && (
+                      <span className="agradm__grupo-tag-sm">
+                        <AccountTreeOutlinedIcon fontSize="inherit" />
+                        {inc.nombreGrupo ?? inc.grupoId}
+                      </span>
+                    )}
+                  </div>
+                  <span className={`agradm__estado-badge ${eMeta.cls}`}>{eMeta.label}</span>
                 </div>
-              </div>
-
-              {sinGrupo.map(inc => {
-                const eNorm = normalizeState(inc.estado)
-                const eMeta = ESTADO_META[eNorm] ?? { label: eNorm, cls: 'agradm__badge--reportado' }
-                const checked = selected.has(inc.id)
-                return (
-                  <div
-                    key={inc.id}
-                    className={`agradm__modal-row${checked ? ' agradm__modal-row--checked' : ''}`}
-                    onClick={() => toggle(inc.id)}
-                  >
-                    <span className="agradm__modal-check">
-                      {checked ? <CheckBoxOutlinedIcon fontSize="small" /> : <CheckBoxOutlineBlankIcon fontSize="small" />}
-                    </span>
-                    <div className="agradm__modal-row-info">
-                      <strong>{inc.descripcion?.slice(0, 60) ?? '(sin descripción)'}…</strong>
-                      <span>
-                        <LocationOnOutlinedIcon fontSize="inherit" />
-                        {inc.ubicacionTextual || '—'}
-                        &nbsp;·&nbsp;
-                        {fmtHora(inc.createdAt ?? inc.fecha)}
-                      </span>
-                    </div>
-                    <span className={`agradm__estado-badge ${eMeta.cls}`}>{eMeta.label}</span>
-                  </div>
-                )
-              })}
-            </div>
-          )}
-
-          {/* Con grupo — solo visualización */}
-          {conGrupo.length > 0 && (
-            <div className="agradm__modal-section">
-              <div className="agradm__modal-section-header">
-                <span className="agradm__modal-section-label agradm__modal-section-label--muted">
-                  Ya agrupados ({conGrupo.length})
-                </span>
-              </div>
-              {conGrupo.map(inc => {
-                const eNorm = normalizeState(inc.estado)
-                const eMeta = ESTADO_META[eNorm] ?? { label: eNorm, cls: 'agradm__badge--reportado' }
-                return (
-                  <div key={inc.id} className="agradm__modal-row agradm__modal-row--grouped">
-                    <span className="agradm__grupo-tag-sm">
-                      <AccountTreeOutlinedIcon fontSize="inherit" />
-                      {inc.nombreGrupo ?? inc.grupoId}
-                    </span>
-                    <div className="agradm__modal-row-info">
-                      <strong>{inc.descripcion?.slice(0, 60) ?? '(sin descripción)'}…</strong>
-                      <span>
-                        <LocationOnOutlinedIcon fontSize="inherit" />
-                        {inc.ubicacionTextual || '—'}
-                        &nbsp;·&nbsp;
-                        {fmtHora(inc.createdAt ?? inc.fecha)}
-                      </span>
-                    </div>
-                    <span className={`agradm__estado-badge ${eMeta.cls}`}>{eMeta.label}</span>
-                  </div>
-                )
-              })}
-            </div>
+              )
+            })
           )}
         </div>
 
-        {/* Footer — crear grupo */}
-        {sinGrupo.length > 0 && (
-          <footer className="agradm__modal-footer">
-            {feedback && <p className="agradm__modal-feedback">{feedback}</p>}
-            <div className="agradm__modal-footer-row">
-              <input
-                className="agradm__nombre-input"
-                placeholder={`Nombre del grupo (ej. ${meta.label} bloque A)`}
-                value={nombre}
-                onChange={e => setNombre(e.target.value)}
-                maxLength={60}
-              />
-              <button
-                className="agradm__agrupar-btn"
-                onClick={crear}
-                disabled={saving || selected.size < 2}
-              >
-                <LinkOutlinedIcon fontSize="small" />
-                {saving ? 'Agrupando…' : `Agrupar ${selected.size > 0 ? `(${selected.size})` : ''}`}
-              </button>
-            </div>
-          </footer>
-        )}
       </div>
     </div>
   )

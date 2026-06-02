@@ -212,42 +212,42 @@
 
 .agradm__cat-header span:first-child { color: var(--text); }
 
-/* ── Grid de categorías ── */
+/* ── Lista de categorías (columna) ── */
 .agradm__cat-grid {
-  display: grid;
-  gap: 1px;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  background: var(--border);
-  padding: 1px;
+  display: flex;
+  flex-direction: column;
 }
 
 .agradm__cat-card {
   align-items: center;
   background: var(--surface);
   border: none;
+  border-bottom: 1px solid var(--border);
   cursor: pointer;
   display: flex;
   gap: 14px;
-  padding: 20px 18px;
+  padding: 13px 20px;
   position: relative;
   text-align: left;
-  transition: background 0.14s, transform 0.1s;
+  transition: background 0.14s, padding-left 0.14s;
 }
+
+.agradm__cat-card:last-child { border-bottom: none; }
 
 .agradm__cat-card::before {
   background: var(--cat-color, var(--accent));
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 3px 3px 0;
   bottom: 0;
   content: '';
   left: 0;
   position: absolute;
   top: 0;
-  width: 4px;
+  width: 3px;
 }
 
 .agradm__cat-card:hover {
   background: var(--surfaceSoft);
-  transform: translateX(2px);
+  padding-left: 24px;
 }
 
 .agradm__cat-card--skeleton {
@@ -255,31 +255,33 @@
   background: linear-gradient(90deg, var(--surfaceSoft) 25%, var(--border) 50%, var(--surfaceSoft) 75%);
   background-size: 200%;
   cursor: default;
-  height: 80px;
+  height: 52px;
 }
 
 .agradm__cat-icon {
   align-items: center;
-  border-radius: 12px;
+  border-radius: 9px;
   color: white;
   display: inline-flex;
   flex-shrink: 0;
-  height: 44px;
+  height: 34px;
   justify-content: center;
-  width: 44px;
+  width: 34px;
 }
+
+.agradm__cat-icon svg { font-size: 18px !important; }
 
 .agradm__cat-info {
   display: flex;
   flex: 1;
-  flex-direction: column;
-  gap: 3px;
+  align-items: center;
+  gap: 8px;
   min-width: 0;
 }
 
 .agradm__cat-info strong {
   color: var(--text);
-  font-size: 14.5px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -289,32 +291,30 @@
 }
 
 .agradm__cat-badges {
-  align-items: flex-end;
+  align-items: center;
   display: flex;
-  flex-direction: column;
   flex-shrink: 0;
-  gap: 4px;
+  gap: 8px;
 }
 
 .agradm__cat-total {
   background: var(--cat-color, var(--accent));
-  border-radius: 50%;
+  border-radius: 20px;
   color: white;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 800;
-  height: 30px;
-  line-height: 30px;
+  min-width: 26px;
+  padding: 2px 9px;
   text-align: center;
-  width: 30px;
 }
 
 .agradm__cat-sin {
   background: rgba(237,176,46,0.15);
   border-radius: 10px;
   color: #b8881f;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
-  padding: 2px 7px;
+  padding: 2px 8px;
   white-space: nowrap;
 }
 
@@ -480,11 +480,13 @@
 .agradm__modal-row--checked { background: var(--accentSoft) !important; }
 .agradm__modal-row--grouped { cursor: default; opacity: 0.7; }
 
-.agradm__modal-check {
-  color: var(--accent);
-  display: flex;
+.agradm__modal-num {
+  color: var(--textMuted);
   flex-shrink: 0;
-  margin-top: 1px;
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 20px;
+  text-align: right;
 }
 
 .agradm__modal-row-info {
@@ -526,27 +528,6 @@
   white-space: nowrap;
 }
 
-/* ── Footer del modal ── */
-.agradm__modal-footer {
-  background: var(--surfaceSoft);
-  border-top: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 14px 18px;
-}
-
-.agradm__modal-feedback {
-  color: var(--danger);
-  font-size: 13px;
-  font-weight: 600;
-  margin: 0;
-}
-
-.agradm__modal-footer-row {
-  display: flex;
-  gap: 10px;
-}
 
 /* ── Lista de incidentes (sin uso ahora, mantenida para compatibilidad) ── */
 .agradm__checkbox { color: var(--accent); flex-shrink: 0; display: flex; }
@@ -785,20 +766,11 @@
 @media (max-width: 800px) {
   .agradm__header { flex-direction: column; padding: 18px 20px; }
   .agradm__header-stats { width: 100%; justify-content: flex-start; }
-
-  .agradm__cat-grid { grid-template-columns: 1fr 1fr; }
-
   .agradm__grupo-header { flex-direction: column; align-items: flex-start; }
   .agradm__grupo-estado-bar { flex-direction: column; align-items: flex-start; }
-
-  .agradm__modal-footer-row { flex-direction: column; }
-  .agradm__nombre-input { width: 100%; }
-  .agradm__agrupar-btn { justify-content: center; width: 100%; }
 }
 
 @media (max-width: 500px) {
-  .agradm__cat-grid { grid-template-columns: 1fr; }
-
   .agradm__modal { border-radius: 16px 16px 0 0; max-height: 96vh; }
   .agradm__modal-backdrop { align-items: flex-end; padding: 0; }
 }
