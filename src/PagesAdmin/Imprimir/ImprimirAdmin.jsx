@@ -113,7 +113,146 @@ const ImprimirAdmin = () => {
   const genDate = fmt(new Date().toISOString())
   const rangoLabel = `${fmtShort(fechaInicio)} — ${fmtShort(fechaFin)}`
 
-  const handlePrint = () => window.print()
+  const handlePrint = () => {
+    const titulo = entidad === 'incidentes' ? 'Reporte de Incidentes' : 'Listado de Usuarios'
+
+    const filas = entidad === 'incidentes'
+      ? incidentesFiltrados.map((inc, idx) => {
+          const tipo  = TIPO_META[inc.tipo]
+          const eNorm = normalizeState(inc.estado)
+          const eMeta = ESTADO_META[eNorm]
+          return `
+            <tr>
+              <td style="text-align:center;color:#888">${idx + 1}</td>
+              <td style="font-weight:700;color:${tipo?.color ?? '#333'}">${tipo?.label ?? inc.tipo ?? '—'}</td>
+              <td>${inc.descripcion?.slice(0, 80) ?? '—'}</td>
+              <td>${inc.ubicacionTextual ?? '—'}</td>
+              <td style="white-space:nowrap;color:#555">${fmtShort(inc.createdAt ?? inc.fecha)}</td>
+              <td><span style="border:1.5px solid ${eMeta?.color ?? '#999'};color:${eMeta?.color ?? '#999'};
+                border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700;white-space:nowrap">
+                ${eMeta?.label ?? eNorm}</span></td>
+            </tr>`
+        }).join('')
+      : usuariosFiltrados.map((u, idx) => {
+          const rolColor = u.rol === 'admin' ? '#005A7E' : '#169586'
+          return `
+            <tr>
+              <td style="text-align:center;color:#888">${idx + 1}</td>
+              <td style="font-weight:700">${u.nombre || '(Sin nombre)'}</td>
+              <td>${u.email || '—'}</td>
+              <td><span style="background:${rolColor}20;color:${rolColor};border-radius:20px;
+                padding:2px 10px;font-size:11px;font-weight:700">
+                ${u.rol === 'admin' ? 'Administrador' : 'Usuario'}</span></td>
+              <td style="color:#555">${fmtShort(u.creadoEn)}</td>
+            </tr>`
+        }).join('')
+
+    const cabeceras = entidad === 'incidentes'
+      ? '<th>#</th><th>Tipo</th><th>Descripción</th><th>Ubicación</th><th>Fecha</th><th>Estado</th>'
+      : '<th>#</th><th>Nombre</th><th>Correo</th><th>Rol</th><th>Registrado</th>'
+
+    const html = `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <title>${titulo} — UDLA</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    body { background: white; color: #111; padding: 0; }
+
+    .encabezado {
+      background: #0B750E;
+      color: white;
+      padding: 18px 28px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .encabezado-brand { display: flex; align-items: center; gap: 16px; }
+    .encabezado-logo  { font-size: 36px; font-weight: 900; letter-spacing: -2px;
+                        border-right: 3px solid rgba(255,255,255,0.4); padding-right: 16px; }
+    .encabezado-nombre strong { display: block; font-size: 16px; }
+    .encabezado-nombre span   { font-size: 12px; opacity: 0.85; }
+    .franja { height: 4px; background: #E81312; margin: 8px 0 4px; border-radius: 2px; }
+    .encabezado-meta { display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; }
+    .encabezado-meta p { padding-right: 16px; border-right: 1px solid rgba(255,255,255,0.3); }
+    .encabezado-meta p:last-child { border-right: none; }
+
+    .contenido { padding: 20px 28px; }
+
+    .subtitulo { font-size: 15px; font-weight: 700; color: #111; margin-bottom: 14px;
+                 border-bottom: 2px solid #0B750E; padding-bottom: 6px; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    th { background: #f0f0f0; border-bottom: 2px solid #ccc; color: #555;
+         font-size: 11px; font-weight: 800; letter-spacing: 0.06em;
+         padding: 9px 12px; text-align: left; }
+    td { border-bottom: 1px solid #e8e8e8; padding: 9px 12px; vertical-align: top; color: #222; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) { background: #fafafa; }
+
+    .pie {
+      border-top: 2px solid #0B750E;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #666;
+      margin: 16px 28px 0;
+      padding-top: 8px;
+      padding-bottom: 16px;
+    }
+
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .encabezado { background: #0B750E !important; color: white !important; }
+      .franja     { background: #E81312 !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="encabezado">
+    <div class="encabezado-brand">
+      <div class="encabezado-logo">UDLA</div>
+      <div class="encabezado-nombre">
+        <strong>Universidad de la Amazonia</strong>
+        <span>Sistema de Gestión de Incidentes — ReportaUdla</span>
+      </div>
+    </div>
+    <div class="franja"></div>
+    <div class="encabezado-meta">
+      <p><strong>${titulo}</strong></p>
+      <p>Periodo: ${rangoLabel}</p>
+      <p>Total registros: ${datos.length}</p>
+      <p>Generado: ${genDate}</p>
+    </div>
+  </div>
+
+  <div class="contenido">
+    <p class="subtitulo">${titulo} — ${rangoLabel}</p>
+    ${datos.length === 0
+      ? '<p style="color:#888;padding:24px 0;text-align:center">No hay registros para los filtros seleccionados.</p>'
+      : `<table><thead><tr>${cabeceras}</tr></thead><tbody>${filas}</tbody></table>`
+    }
+  </div>
+
+  <div class="pie">
+    <span>Universidad de la Amazonia — ReportaUdla</span>
+    <span>Generado el ${genDate}</span>
+    <span>Confidencial — Uso interno</span>
+  </div>
+
+  <script>window.onload = function(){ window.print(); }</script>
+</body>
+</html>`
+
+    const ventana = window.open('', '_blank', 'width=900,height=700')
+    if (!ventana) {
+      alert('Permite las ventanas emergentes para imprimir el reporte.')
+      return
+    }
+    ventana.document.write(html)
+    ventana.document.close()
+  }
 
   return (
     <div className="impadm">

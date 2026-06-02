@@ -317,131 +317,14 @@
 .impadm__rol-badge--admin { background: rgba(0,90,126,0.12); color: #005A7E; }
 .impadm__rol-badge--usuario { background: var(--accentSoft); color: var(--accent); }
 
-/* ── Cabecera/footer institucional (solo impresión) ── */
+/* Cabecera y footer sólo existen en la ventana de impresión (ventana separada) */
 .impadm__print-header,
-.impadm__print-footer { display: none; }
-
-/* ══ IMPRESIÓN ══ */
-@media print {
-  body * { visibility: hidden !important; }
-
-  .impadm__printable,
-  .impadm__printable * { visibility: visible !important; }
-
-  .impadm__printable {
-    position: fixed;
-    left: 0; top: 0;
-    width: 100%;
-    background: white;
-    padding: 0;
-  }
-
-  /* Cabecera verde institucional */
-  .impadm__print-header {
-    display: flex !important;
-    flex-direction: column;
-    background: #0B750E !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-    color: white !important;
-    padding: 16px 24px 12px;
-    margin-bottom: 0;
-  }
-
-  .impadm__print-brand {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 6px;
-  }
-
-  .impadm__print-logo-text {
-    font-size: 36px;
-    font-weight: 900;
-    letter-spacing: -2px;
-    line-height: 1;
-    border-right: 3px solid rgba(255,255,255,0.5);
-    padding-right: 16px;
-  }
-
-  .impadm__print-brand-info strong {
-    display: block;
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 2px;
-  }
-
-  .impadm__print-brand-info span {
-    font-size: 12px;
-    opacity: 0.85;
-  }
-
-  .impadm__print-stripe {
-    height: 4px;
-    background: #E81312 !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-    margin: 10px 0 8px;
-    border-radius: 2px;
-  }
-
-  .impadm__print-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    font-size: 12px;
-  }
-
-  .impadm__print-meta p {
-    margin: 0;
-    padding: 0 12px 0 0;
-    border-right: 1px solid rgba(255,255,255,0.3);
-  }
-
-  .impadm__print-meta p:last-child { border-right: none; }
-
-  /* Ocultar controles */
-  .impadm__header,
-  .impadm__config { display: none !important; }
-
-  /* Vista previa */
-  .impadm__preview {
-    border: none;
-    box-shadow: none;
-    padding: 12px 24px;
-  }
-
-  .impadm__preview-header {
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 8px;
-    padding-bottom: 8px;
-  }
-
-  /* Tabla */
-  .impadm__table th {
-    background: #f5f5f5 !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  .impadm__estado-badge,
-  .impadm__rol-badge,
-  .impadm__tipo-cell {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  /* Footer */
-  .impadm__print-footer {
-    display: flex !important;
-    justify-content: space-between;
-    border-top: 2px solid #0B750E;
-    color: #555;
-    font-size: 10px;
-    margin: 8px 24px 0;
-    padding-top: 8px;
-  }
-}
+.impadm__print-footer,
+.impadm__print-brand,
+.impadm__print-logo-text,
+.impadm__print-brand-info,
+.impadm__print-stripe,
+.impadm__print-meta { display: none; }
 
 /* ── Responsive ── */
 @media (max-width: 700px) {
