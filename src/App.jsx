@@ -14,6 +14,7 @@ import MisIncidentes from './PagesUsers/MisIncidentes/MisIncidentes'
 import Estadisticas from './PagesUsers/Estadisticas/Estadisticas'
 import Notificaciones from './PagesUsers/Notificaciones/Notificaciones'
 import Register from './Components/Register/Register.jsx'
+import ReportarAnonimo from './PagesUsers/ReportarAnonimo/ReportarAnonimo.jsx'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<><BrowserHome /><Main /><Feature /><Pasos /><Cta /><Footer /></>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/reportar-anonimo" element={<ReportarAnonimo />} />
         <Route path="/dashboard" element={<UserLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="reportar" element={<Reportar />} />

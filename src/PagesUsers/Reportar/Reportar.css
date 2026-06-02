@@ -255,75 +255,93 @@
 }
 
 .reportarLocationCard {
-  background: var(--surfaceSoft);
-  border: 1px solid var(--border);
-  border-radius: 18px;
+  align-items: center;
+  border-top: 1px dashed var(--border);
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 18px;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 2px 4px;
 }
 
 .reportarLocationInfo {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
-  gap: 12px;
+  flex: 1 1 auto;
+  gap: 6px;
+  min-width: 0;
 }
 
 .reportarLocationInfo svg {
   color: var(--success);
-  font-size: 24px;
-  margin-top: 2px;
+  flex-shrink: 0;
+  font-size: 16px !important;
 }
 
 .reportarLocationLabel {
-  color: var(--text);
-  display: block;
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 6px;
+  color: var(--textMuted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.reportarLocationLabel + strong {
+  background: var(--accentSoft);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  margin-left: 4px;
 }
 
 .reportarLocationCoords {
-  color: var(--textMuted);
-  font-size: 13px;
-  margin-top: 8px;
+  color: var(--textSubtle);
+  font-size: 11px;
+  margin-left: 22px;
+  width: 100%;
 }
 
 .reportarLocationActions {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 6px;
+  flex-shrink: 0;
 }
 
 .reportarLocationBtn {
-  flex: 1 1 160px;
-  min-width: 140px;
-  border: none;
-  border-radius: 12px;
-  background: var(--primary);
-  color: #fff;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--textMuted);
   cursor: pointer;
-  font-weight: 700;
-  padding: 12px 16px;
-  transition: transform 0.16s ease, background 0.2s ease;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
 }
 
 .reportarLocationBtn:hover:not(:disabled),
 .reportarLocationBtn:focus-visible:not(:disabled) {
-  background: var(--primaryDark);
-  transform: translateY(-1px);
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accentSoft);
 }
 
 .reportarLocationBtn:disabled {
-  opacity: 0.6;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
 .reportarLocationBtn--secondary {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--text);
+  border-color: var(--border);
+  color: var(--textSubtle);
+}
+
+.reportarMapEmbed {
+  border: none;
+  border-radius: 10px;
+  height: 180px;
+  margin-top: 2px;
+  width: 100%;
 }
 
 .reportarError {

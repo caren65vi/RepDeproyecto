@@ -349,15 +349,15 @@ const Reportar = () => {
               >
                 {isGettingLocation ? 'Obteniendo ubicación...' : 'Obtener ubicación'}
               </button>
-              <button
-                type="button"
-                className="reportarLocationBtn reportarLocationBtn--secondary"
-                onClick={openMaps}
-                disabled={coordinates.latitud == null || coordinates.longitud == null}
-              >
-                Abrir en Maps
-              </button>
             </div>
+
+            {coordinates.latitud != null && coordinates.longitud != null && (
+              <iframe
+                className="reportarMapEmbed"
+                title="Ubicación en el mapa"
+                src={`https://www.openstreetmap.org/export/embed.html?bbox=${coordinates.longitud - 0.003},${coordinates.latitud - 0.003},${coordinates.longitud + 0.003},${coordinates.latitud + 0.003}&layer=mapnik&marker=${coordinates.latitud},${coordinates.longitud}`}
+              />
+            )}
           </div>
 
           {successMessage && <p className="reportarSuccess" role="status">{successMessage}</p>}

@@ -1,0 +1,72 @@
+.incidentConsent,
+.incidentToast,
+.incidentNotifierError {
+  border-radius: 14px;
+  bottom: 22px;
+  box-shadow: 0 12px 32px rgba(34, 34, 34, 0.18);
+  max-width: min(420px, calc(100vw - 32px));
+  padding: 16px;
+  position: fixed;
+  right: 22px;
+  z-index: 1500;
+}
+
+.incidentConsent {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.incidentConsent p {
+  color: var(--textMuted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 8px 0 14px;
+}
+
+.incidentConsentActions {
+  display: flex;
+  gap: 8px;
+}
+
+.incidentConsentActions button {
+  background: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 9px 13px;
+}
+
+.incidentConsentActions .incidentConsentSecondary {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--textMuted);
+}
+
+.incidentToast {
+  background: var(--primary);
+  color: #fff;
+  display: grid;
+  gap: 4px;
+}
+
+.incidentToast span {
+  font-size: 13px;
+}
+
+.incidentNotifierError {
+  background: var(--loginAlertBg);
+  border: 1px solid var(--dangerBorder);
+  color: var(--loginAlertText);
+}
+
+@media (max-width: 640px) {
+  .incidentConsent,
+  .incidentToast,
+  .incidentNotifierError {
+    bottom: 16px;
+    right: 16px;
+  }
+}

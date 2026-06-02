@@ -1,0 +1,158 @@
+.notifitorBar {
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: 20px;
+  min-height: 114px;
+  padding: 24px 28px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  width: 100%;
+}
+
+.notifitorBar:hover {
+  border-color: var(--accent);
+  box-shadow: var(--cardShadow);
+  transform: translateY(-3px);
+}
+
+.notifitorBar div {
+  display: grid;
+  gap: 4px;
+}
+
+.notifitorBar strong {
+  color: var(--text);
+  font-size: 16px;
+}
+
+.notifitorBar span {
+  color: var(--textMuted);
+  font-size: 14px;
+}
+
+.notifitorBar button,
+.notifitorActions button {
+  background: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  min-width: 168px;
+  padding: 9px 13px;
+}
+
+.notifitorOverlay {
+  align-items: center;
+  background: rgba(12, 20, 18, 0.52);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 18px;
+  position: fixed;
+  z-index: 1800;
+}
+
+.notifitorModal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(34, 34, 34, 0.24);
+  color: var(--text);
+  max-width: 720px;
+  padding: 24px;
+  position: relative;
+  width: 100%;
+}
+
+.notifitorClose {
+  background: transparent;
+  border: 0;
+  color: var(--textMuted);
+  cursor: pointer;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+
+.notifitorStatus {
+  background: var(--surfaceSoft);
+  border-radius: 999px;
+  color: var(--textMuted);
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 10px;
+}
+
+.notifitorStatusActive {
+  background: var(--accentSoft);
+  color: var(--accent);
+}
+
+.notifitorModal h2 {
+  font-size: 20px;
+  margin: 16px 0 8px;
+}
+
+.notifitorModal > p {
+  color: var(--textMuted);
+  font-size: 14px;
+  line-height: 1.55;
+  margin-top: 8px;
+}
+
+.notifitorPermissionHelp {
+  background: var(--surfaceSoft);
+  border-radius: 10px;
+  color: var(--textMuted);
+  font-size: 14px;
+  line-height: 1.55;
+  margin-top: 14px;
+  padding: 12px 14px;
+}
+
+.notifitorPermissionHelp p {
+  color: var(--loginAlertText);
+  font-weight: 700;
+}
+
+.notifitorPermissionHelp ol {
+  margin: 8px 0 0 18px;
+}
+
+.notifitorPermissionHelp li + li {
+  margin-top: 4px;
+}
+
+.notifitorActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.notifitorActions .notifitorSecondary {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--textMuted);
+}
+
+@media (max-width: 720px) {
+  .notifitorBar {
+    align-items: flex-start;
+    border-radius: 14px;
+    flex-direction: column;
+    gap: 16px;
+    min-height: auto;
+    padding: 20px;
+  }
+
+  .notifitorBar button {
+    justify-content: center;
+    width: 100%;
+  }
+}

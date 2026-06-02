@@ -1,11 +1,13 @@
-import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Main.css'
 import Button from '../Button/Button'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import AddIcon from '@mui/icons-material/Add'
 import VisibilityIcon from '@mui/icons-material/Visibility'
+import LatestIncidents from './LatestIncidents'
 
 const Main = () => {
+    const navigate = useNavigate()
     return (
         <main id="inicio" className="homeMain">
             <section className="information">
@@ -22,17 +24,13 @@ const Main = () => {
                     problemas de infraestructura y más.</p>
 
                 <div className="buttons">
-                    <Button startIcon={<AddIcon fontSize="small" />}>Reportar incidente</Button>
+                    <Button onClick={() => navigate('/reportar-anonimo')} startIcon={<AddIcon fontSize="small" />}>Reportar incidente</Button>
                     <Button className="btnOutline" startIcon={<VisibilityIcon fontSize="small" />}>Ver incidentes</Button>
                 </div>
 
             </section>
             <hr />
-            <section className="additionalInfo">
-                <div></div>
-                <div></div>
-                <div></div>
-            </section>
+            <LatestIncidents />
 
         </main>
     )
