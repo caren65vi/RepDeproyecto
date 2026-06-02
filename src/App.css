@@ -11,126 +11,137 @@
 :root {
   color-scheme: light;
 
-  --bg: #f8fafc;
+  --bg: #f5f7f4;
   --surface: #ffffff;
-  --surfaceSoft: #e2e8f0;
-  --navDashBg: #f1f5f9;
-  --navUserBg: #eef2f6;
-  --border: #cbd5e1;
+  --surfaceSoft: #eaf0e9;
+  --navDashBg: #f0f4ef;
+  --navUserBg: #e8ede7;
+  --border: #c4d0c3;
 
-  --text: #0f172a;
-  --textMuted: #64748b;
-  --textSubtle: #94a3b8;
-  --textH: #0f172a;
+  --text: #222222;
+  --textMuted: #5a6b59;
+  --textSubtle: #8fa08e;
+  --textH: #1a2e19;
 
-  --primary: #0284c7;
-  --primaryHover: #0369a1;
+  --primary: #0B750E;
+  --primaryHover: #095c0b;
   --primaryContrast: #ffffff;
-  --accent: #0284c7;
-  --accentHover: #0369a1;
-  --accentLight: #38bdf8;
-  --accentSoft: rgba(2, 132, 199, 0.12);
-  --accentActive: rgba(2, 132, 199, 0.18);
+  --accent: #169586;
+  --accentHover: #117a6d;
+  --accentLight: #4dbfb0;
+  --accentSoft: rgba(22, 149, 134, 0.12);
+  --accentActive: rgba(22, 149, 134, 0.20);
 
-  --success: #16a34a;
-  --warning: #d97706;
-  --danger: #dc2626;
-  --dangerSoft: rgba(220, 38, 38, 0.1);
-  --dangerBorder: rgba(220, 38, 38, 0.35);
-  --dangerHover: #b91c1c;
-  --info: #2563eb;
+  --success: #0B750E;
+  --warning: #EDB02E;
+  --danger: #E81312;
+  --dangerSoft: rgba(232, 19, 18, 0.10);
+  --dangerBorder: rgba(232, 19, 18, 0.35);
+  --dangerHover: #c41010;
+  --info: #005A7E;
 
-  --socialBg: #e2e8f0;
-  --overlayBg: rgba(15, 23, 42, 0.48);
-  --navShadow: 6px 0 40px rgba(15, 23, 42, 0.22);
-  --cardShadow: 0 4px 20px rgba(15, 23, 42, 0.08);
-  --shadow: 0 8px 32px rgba(15, 23, 42, 0.14);
+  --socialBg: #eaf0e9;
+  --overlayBg: rgba(34, 34, 34, 0.50);
+  --navShadow: 6px 0 40px rgba(11, 117, 14, 0.15);
+  --cardShadow: 0 4px 20px rgba(34, 34, 34, 0.08);
+  --shadow: 0 8px 32px rgba(34, 34, 34, 0.14);
 
-  --btnRadius: 8px;
+  --btnRadius: 6px;
   --btnPadding: 10px 18px;
-  --btnShadow: 0 4px 16px rgba(2, 132, 199, 0.24);
-  --btnShadowAccent: 0 8px 28px rgba(2, 132, 199, 0.32);
-  --btnFocusRing: rgba(2, 132, 199, 0.32);
-  --btnActiveShadow: 0 4px 12px rgba(15, 23, 42, 0.18), inset 0 2px 6px rgba(15, 23, 42, 0.12);
-  --btnShine: linear-gradient(120deg, rgba(255, 255, 255, 0.04) 0%, rgba(2, 132, 199, 0.16) 50%, rgba(255, 255, 255, 0.04) 100%);
-  --btnPulseStart: rgba(2, 132, 199, 0.3);
-  --btnPulseEnd: rgba(2, 132, 199, 0);
+  --btnShadow: 0 4px 16px rgba(11, 117, 14, 0.24);
+  --btnShadowAccent: 0 8px 28px rgba(11, 117, 14, 0.30);
+  --btnFocusRing: rgba(11, 117, 14, 0.32);
+  --btnActiveShadow: 0 4px 12px rgba(34, 34, 34, 0.18), inset 0 2px 6px rgba(34, 34, 34, 0.12);
+  --btnShine: linear-gradient(120deg, rgba(255, 255, 255, 0.04) 0%, rgba(11, 117, 14, 0.14) 50%, rgba(255, 255, 255, 0.04) 100%);
+  --btnPulseStart: rgba(11, 117, 14, 0.30);
+  --btnPulseEnd: rgba(11, 117, 14, 0);
 
-  --loginBg: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #eff6ff 100%);
-  --loginGlowLeft: radial-gradient(ellipse at 20% 50%, rgba(2, 132, 199, 0.14) 0%, transparent 60%);
-  --loginGlowRight: radial-gradient(ellipse at 80% 20%, rgba(56, 189, 248, 0.14) 0%, transparent 50%);
-  --loginCardBg: rgba(255, 255, 255, 0.96);
-  --loginFieldBg: #f8fafc;
-  --loginPlaceholder: #94a3b8;
-  --loginDividerText: #94a3b8;
-  --loginAlertBg: rgba(220, 38, 38, 0.12);
-  --loginAlertText: #991b1b;
-  --loginButtonBg: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-  --loginButtonHoverBg: linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%);
-  --loginButtonShadow: 0 6px 18px rgba(2, 132, 199, 0.26), 0 0 10px rgba(56, 189, 248, 0.12);
-  --loginButtonHoverShadow: 0 10px 35px rgba(2, 132, 199, 0.34), 0 0 30px rgba(56, 189, 248, 0.2);
+  --loginBg: linear-gradient(135deg, #f5f7f4 0%, #dff0de 50%, #edf5ec 100%);
+  --loginGlowLeft: radial-gradient(ellipse at 20% 50%, rgba(11, 117, 14, 0.12) 0%, transparent 60%);
+  --loginGlowRight: radial-gradient(ellipse at 80% 20%, rgba(22, 149, 134, 0.12) 0%, transparent 50%);
+  --loginCardBg: rgba(255, 255, 255, 0.97);
+  --loginFieldBg: #f5f7f4;
+  --loginPlaceholder: #8fa08e;
+  --loginDividerText: #8fa08e;
+  --loginAlertBg: rgba(232, 19, 18, 0.10);
+  --loginAlertText: #9e0e0e;
+  --loginButtonBg: linear-gradient(135deg, #0B750E 0%, #095c0b 100%);
+  --loginButtonHoverBg: linear-gradient(135deg, #095c0b 0%, #169586 100%);
+  --loginButtonShadow: 0 6px 18px rgba(11, 117, 14, 0.28), 0 0 10px rgba(22, 149, 134, 0.10);
+  --loginButtonHoverShadow: 0 10px 35px rgba(11, 117, 14, 0.36), 0 0 30px rgba(22, 149, 134, 0.18);
+
+  /* Variables de color institucional UDLA */
+  --udla-verde: #0B750E;
+  --udla-rojo: #E81312;
+  --udla-negro: #222222;
+  --udla-teal: #169586;
+  --udla-azul-marino: #005A7E;
+  --udla-dorado: #EDB02E;
+  --udla-verde-claro: #34AB1E;
+  --udla-rojo-oscuro: #A6141D;
+  --udla-naranja: #E47113;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
 
-    --bg: #0f172a;
-    --surface: #111827;
-    --surfaceSoft: #1e293b;
-    --navDashBg: #1c1f24;
-    --navUserBg: #171a20;
-    --border: #334155;
+    --bg: #0d1a0d;
+    --surface: #111e11;
+    --surfaceSoft: #172817;
+    --navDashBg: #141f14;
+    --navUserBg: #101910;
+    --border: #2a3d2a;
 
-    --text: #f8fafc;
-    --textMuted: #94a3b8;
-    --textSubtle: #64748b;
-    --textH: #f8fafc;
+    --text: #e8f0e7;
+    --textMuted: #8fa08e;
+    --textSubtle: #5a6b59;
+    --textH: #e8f0e7;
 
-    --primary: #38bdf8;
-    --primaryHover: #0ea5e9;
-    --primaryContrast: #0f172a;
-    --accent: #38bdf8;
-    --accentHover: #0ea5e9;
-    --accentLight: #7dd3fc;
-    --accentSoft: rgba(56, 189, 248, 0.12);
-    --accentActive: rgba(56, 189, 248, 0.2);
+    --primary: #34AB1E;
+    --primaryHover: #2d9219;
+    --primaryContrast: #0d1a0d;
+    --accent: #4dbfb0;
+    --accentHover: #3aa89a;
+    --accentLight: #7dd4cc;
+    --accentSoft: rgba(77, 191, 176, 0.12);
+    --accentActive: rgba(77, 191, 176, 0.20);
 
-    --success: #22c55e;
-    --warning: #f59e0b;
-    --danger: #ef4444;
-    --dangerSoft: rgba(239, 68, 68, 0.1);
-    --dangerBorder: rgba(239, 68, 68, 0.35);
-    --dangerHover: #f87171;
-    --info: #3b82f6;
+    --success: #34AB1E;
+    --warning: #EDB02E;
+    --danger: #f04140;
+    --dangerSoft: rgba(240, 65, 64, 0.10);
+    --dangerBorder: rgba(240, 65, 64, 0.35);
+    --dangerHover: #f47170;
+    --info: #4dbfb0;
 
-    --socialBg: #1e293b;
-    --overlayBg: rgba(0, 0, 0, 0.55);
+    --socialBg: #172817;
+    --overlayBg: rgba(0, 0, 0, 0.60);
     --navShadow: 6px 0 40px rgba(0, 0, 0, 0.65);
-    --cardShadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    --cardShadow: 0 4px 20px rgba(0, 0, 0, 0.30);
     --shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
 
-    --btnShadow: 0 4px 16px rgba(56, 189, 248, 0.24);
-    --btnShadowAccent: 0 8px 28px rgba(56, 189, 248, 0.36);
-    --btnFocusRing: rgba(56, 189, 248, 0.4);
-    --btnActiveShadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 2px 6px rgba(0, 0, 0, 0.15);
-    --btnShine: linear-gradient(120deg, rgba(255, 255, 255, 0.02) 0%, rgba(96, 165, 250, 0.15) 50%, rgba(255, 255, 255, 0.02) 100%);
-    --btnPulseStart: rgba(56, 189, 248, 0.35);
-    --btnPulseEnd: rgba(56, 189, 248, 0);
+    --btnShadow: 0 4px 16px rgba(52, 171, 30, 0.24);
+    --btnShadowAccent: 0 8px 28px rgba(52, 171, 30, 0.32);
+    --btnFocusRing: rgba(52, 171, 30, 0.40);
+    --btnActiveShadow: 0 4px 12px rgba(0, 0, 0, 0.30), inset 0 2px 6px rgba(0, 0, 0, 0.15);
+    --btnShine: linear-gradient(120deg, rgba(255, 255, 255, 0.02) 0%, rgba(77, 191, 176, 0.14) 50%, rgba(255, 255, 255, 0.02) 100%);
+    --btnPulseStart: rgba(52, 171, 30, 0.35);
+    --btnPulseEnd: rgba(52, 171, 30, 0);
 
-    --loginBg: linear-gradient(135deg, #05080f 0%, #12172d 50%, #081021 100%);
-    --loginGlowLeft: radial-gradient(ellipse at 20% 50%, rgba(29, 78, 216, 0.14) 0%, transparent 60%);
-    --loginGlowRight: radial-gradient(ellipse at 80% 20%, rgba(96, 165, 250, 0.1) 0%, transparent 50%);
-    --loginCardBg: rgba(15, 21, 38, 0.96);
-    --loginFieldBg: #0d1117;
-    --loginPlaceholder: #475569;
-    --loginDividerText: #475569;
-    --loginAlertBg: rgba(220, 38, 38, 0.15);
-    --loginAlertText: #fca5a5;
-    --loginButtonBg: linear-gradient(135deg, #1f4ed8 0%, #1f5bb0 100%);
-    --loginButtonHoverBg: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
-    --loginButtonShadow: 0 6px 18px rgba(15, 67, 128, 0.4), 0 0 10px rgba(59, 130, 246, 0.12);
-    --loginButtonHoverShadow: 0 10px 35px rgba(29, 78, 216, 0.6), 0 0 30px rgba(96, 165, 250, 0.25);
+    --loginBg: linear-gradient(135deg, #060e06 0%, #0d1a0d 50%, #081408 100%);
+    --loginGlowLeft: radial-gradient(ellipse at 20% 50%, rgba(11, 117, 14, 0.16) 0%, transparent 60%);
+    --loginGlowRight: radial-gradient(ellipse at 80% 20%, rgba(77, 191, 176, 0.10) 0%, transparent 50%);
+    --loginCardBg: rgba(13, 26, 13, 0.97);
+    --loginFieldBg: #0a140a;
+    --loginPlaceholder: #3d5c3d;
+    --loginDividerText: #3d5c3d;
+    --loginAlertBg: rgba(232, 19, 18, 0.15);
+    --loginAlertText: #f4a0a0;
+    --loginButtonBg: linear-gradient(135deg, #0B750E 0%, #086b0b 100%);
+    --loginButtonHoverBg: linear-gradient(135deg, #0d8c11 0%, #169586 100%);
+    --loginButtonShadow: 0 6px 18px rgba(11, 117, 14, 0.45), 0 0 10px rgba(52, 171, 30, 0.12);
+    --loginButtonHoverShadow: 0 10px 35px rgba(11, 117, 14, 0.60), 0 0 30px rgba(77, 191, 176, 0.22);
   }
 }
 

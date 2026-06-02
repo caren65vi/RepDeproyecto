@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .navUser {
   width: 220px;
   min-width: 220px;
@@ -249,7 +255,7 @@
 /* ══════════════════════════════════════
    RESPONSIVE — MÓVIL (≤768px)
 ══════════════════════════════════════ */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   /* Barra fija en la parte superior */
   .navUserMobileBar {
     display: flex;

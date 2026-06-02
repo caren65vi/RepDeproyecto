@@ -1,11 +1,297 @@
-.reportarTitle {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 8px;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
 }
 
-.reportarSubtitle {
+.reportar {
+  min-height: calc(100vh - 64px);
+  position: relative;
+}
+
+.reportarDashboard {
+  inset: -32px;
+  overflow: hidden;
+  padding: 32px;
+  position: absolute;
+}
+
+.reportarBackdrop {
+  background: var(--overlayBg);
+  inset: -32px;
+  position: fixed;
+  z-index: 10;
+}
+
+.reportarModal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  left: 50%;
+  max-height: calc(100vh - 48px);
+  max-width: 540px;
+  overflow-y: auto;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 40px);
+  z-index: 11;
+}
+
+.reportarHeader {
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 24px;
+}
+
+.reportarTitle {
+  color: var(--text);
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.reportarClose {
+  align-items: center;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 7px;
+}
+
+.reportarClose:hover {
+  background: var(--surfaceSoft);
+}
+
+.reportarForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px 24px 0;
+}
+
+.reportarField {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.reportarField > span {
+  color: var(--text);
   font-size: 14px;
+  font-weight: 700;
+}
+
+.reportarField b {
+  color: var(--danger);
+}
+
+.reportarField input,
+.reportarField select,
+.reportarField textarea {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--text);
+  font-size: 15px;
+  padding: 10px 12px;
+  resize: vertical;
+  width: 100%;
+}
+
+.reportarField input:focus,
+.reportarField select:focus,
+.reportarField textarea:focus {
+  border-color: var(--accent);
+  outline: 2px solid var(--accentSoft);
+}
+
+.reportarPhoto {
+  align-items: center;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
   color: var(--textMuted);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+  min-height: 96px;
+  padding: 14px;
+  text-align: center;
+}
+
+.reportarPhoto:hover,
+.reportarPhotoSelected {
+  background: var(--accentSoft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.reportarPhoto strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.reportarPhoto input {
+  display: none;
+}
+
+.reportarLocation {
+  align-items: center;
+  color: var(--textMuted);
+  display: flex;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.reportarLocation svg {
+  color: var(--success);
+  font-size: 19px;
+}
+
+.reportarLocation strong {
+  background: var(--accentSoft);
+  border-radius: 999px;
+  color: var(--success);
+  font-size: 12px;
+  margin-left: auto;
+  padding: 2px 9px;
+}
+
+.reportarError {
+  background: var(--dangerSoft);
+  border-radius: 8px;
+  color: var(--dangerHover);
+  font-size: 13px;
+  padding: 8px 10px;
+}
+
+.reportarActions {
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin: 2px -24px 0;
+  padding: 14px 24px;
+}
+
+.reportarCancel,
+.reportarSave {
+  justify-content: center;
+  min-width: 138px;
+}
+
+@media (max-width: 1024px) {
+  .reportar {
+    margin: 0;
+    min-height: auto;
+    background: var(--bg);
+  }
+
+  .reportarDashboard,
+  .reportarBackdrop {
+    display: none;
+  }
+
+  .reportarModal {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    left: 0;
+    position: relative;
+    top: 0;
+    transform: none;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    background: var(--surface);
+  }
+
+  .reportarHeader,
+  .reportarForm {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .reportarHeader {
+    gap: 12px;
+  }
+
+  .reportarForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: visible;
+    padding-bottom: 20px;
+  }
+
+  .reportarActions {
+    margin: 0;
+    padding: 16px;
+    gap: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: stretch;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+
+  .reportarActions .btn {
+    flex: 1 1 100%;
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .reportarModal {
+    padding-bottom: 0;
+  }
+
+  .reportarTitle {
+    font-size: 18px;
+  }
+
+  .reportarField input,
+  .reportarField select,
+  .reportarField textarea {
+    padding: 12px 14px;
+  }
+
+  .reportarPhoto {
+    min-height: 120px;
+    padding: 16px;
+  }
+
+  .reportarPhoto strong {
+    font-size: 14px;
+  }
+
+  .reportarLocation {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .reportarLocation strong {
+    margin-left: 0;
+    width: 100%;
+    padding: 6px 10px;
+  }
+
+  .reportarError {
+    font-size: 14px;
+  }
+
+  .reportarActions {
+    gap: 12px;
+  }
 }

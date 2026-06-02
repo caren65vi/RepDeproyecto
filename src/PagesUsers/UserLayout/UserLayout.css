@@ -1,3 +1,10 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
 .userLayout {
   display: flex;
   min-height: 100vh;
@@ -11,7 +18,7 @@
   color: var(--text);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .userLayout {
     flex-direction: column;
   }
