@@ -1,0 +1,80 @@
+.notFoundPage {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.notFoundCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  padding: 3rem 2.5rem;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.notFoundBrand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.notFoundBrand img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.notFoundBrand span {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.notFoundIcon {
+  font-size: 4rem !important;
+  color: var(--textSubtle);
+}
+
+.notFoundCode {
+  font-size: 5rem;
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1;
+  margin: 0;
+}
+
+.notFoundTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--textH);
+  margin: 0;
+}
+
+.notFoundDesc {
+  font-size: 0.95rem;
+  color: var(--textMuted);
+  margin: 0;
+}
+
+.notFoundBtn {
+  margin-top: 0.5rem;
+  padding: 0.65rem 1.75rem;
+  background: var(--primary);
+  color: var(--primaryContrast);
+  border-radius: 0.6rem;
+  font-size: 0.95rem;
+}
+
+.notFoundBtn:hover {
+  background: var(--primaryHover);
+}

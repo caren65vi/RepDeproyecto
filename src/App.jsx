@@ -21,6 +21,7 @@ import AgruparAdmin from './PagesAdmin/Agrupar/AgruparAdmin.jsx'
 import EstadisticasAdmin from './PagesAdmin/Estadisticas/EstadisticasAdmin.jsx'
 import ImprimirAdmin from './PagesAdmin/Imprimir/ImprimirAdmin.jsx'
 import UsuariosAdmin from './PagesAdmin/Usuarios/UsuariosAdmin.jsx'
+import NotFound from './Components/NotFound/NotFound.jsx'
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route path="notificaciones" element={<Notificaciones />} />
           <Route path="datos-personales" element={<DatosPersonales />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )
