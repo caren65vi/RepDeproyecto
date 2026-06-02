@@ -12,6 +12,7 @@ import OpacityIcon from '@mui/icons-material/Opacity'
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService'
 import SecurityIcon from '@mui/icons-material/Security'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import logoPng from '../../assets/LogoPrincipal.png'
 import './ImprimirAdmin.css'
 
 const STATE_ALIAS = { abierto: 'reportado', en_proceso: 'analisis', cerrado: 'resuelto' }
@@ -114,37 +115,35 @@ const ImprimirAdmin = () => {
   const rangoLabel = `${fmtShort(fechaInicio)} — ${fmtShort(fechaFin)}`
 
   const handlePrint = () => {
-    const titulo = entidad === 'incidentes' ? 'Reporte de Incidentes' : 'Listado de Usuarios'
+    const titulo   = entidad === 'incidentes' ? 'Reporte de Incidentes' : 'Listado de Usuarios'
+    const logoUrl  = new URL(logoPng, window.location.href).href
+    const hoy      = new Date()
+    const fechaDoc = hoy.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' })
+    const ref      = `REP-${hoy.getFullYear()}-${String(hoy.getMonth()+1).padStart(2,'0')}${String(hoy.getDate()).padStart(2,'0')}`
 
     const filas = entidad === 'incidentes'
       ? incidentesFiltrados.map((inc, idx) => {
           const tipo  = TIPO_META[inc.tipo]
           const eNorm = normalizeState(inc.estado)
           const eMeta = ESTADO_META[eNorm]
-          return `
-            <tr>
-              <td style="text-align:center;color:#888">${idx + 1}</td>
-              <td style="font-weight:700;color:${tipo?.color ?? '#333'}">${tipo?.label ?? inc.tipo ?? '—'}</td>
-              <td>${inc.descripcion?.slice(0, 80) ?? '—'}</td>
-              <td>${inc.ubicacionTextual ?? '—'}</td>
-              <td style="white-space:nowrap;color:#555">${fmtShort(inc.createdAt ?? inc.fecha)}</td>
-              <td><span style="border:1.5px solid ${eMeta?.color ?? '#999'};color:${eMeta?.color ?? '#999'};
-                border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700;white-space:nowrap">
-                ${eMeta?.label ?? eNorm}</span></td>
-            </tr>`
+          return `<tr class="${idx % 2 === 1 ? 'par' : ''}">
+            <td class="celda-num">${idx + 1}</td>
+            <td class="celda-tipo" style="color:${tipo?.color ?? '#333'}">${tipo?.label ?? inc.tipo ?? '—'}</td>
+            <td>${inc.descripcion?.slice(0, 90) ?? '—'}</td>
+            <td>${inc.ubicacionTextual ?? '—'}</td>
+            <td class="celda-fecha">${fmtShort(inc.createdAt ?? inc.fecha)}</td>
+            <td><span class="badge" style="border-color:${eMeta?.color ?? '#999'};color:${eMeta?.color ?? '#999'}">${eMeta?.label ?? eNorm}</span></td>
+          </tr>`
         }).join('')
       : usuariosFiltrados.map((u, idx) => {
-          const rolColor = u.rol === 'admin' ? '#005A7E' : '#169586'
-          return `
-            <tr>
-              <td style="text-align:center;color:#888">${idx + 1}</td>
-              <td style="font-weight:700">${u.nombre || '(Sin nombre)'}</td>
-              <td>${u.email || '—'}</td>
-              <td><span style="background:${rolColor}20;color:${rolColor};border-radius:20px;
-                padding:2px 10px;font-size:11px;font-weight:700">
-                ${u.rol === 'admin' ? 'Administrador' : 'Usuario'}</span></td>
-              <td style="color:#555">${fmtShort(u.creadoEn)}</td>
-            </tr>`
+          const rc = u.rol === 'admin' ? '#005A7E' : '#169586'
+          return `<tr class="${idx % 2 === 1 ? 'par' : ''}">
+            <td class="celda-num">${idx + 1}</td>
+            <td><strong>${u.nombre || '(Sin nombre)'}</strong></td>
+            <td>${u.email || '—'}</td>
+            <td><span class="badge" style="border-color:${rc};color:${rc}">${u.rol === 'admin' ? 'Administrador' : 'Usuario'}</span></td>
+            <td class="celda-fecha">${fmtShort(u.creadoEn)}</td>
+          </tr>`
         }).join('')
 
     const cabeceras = entidad === 'incidentes'
@@ -155,97 +154,327 @@ const ImprimirAdmin = () => {
 <html lang="es">
 <head>
   <meta charset="UTF-8"/>
-  <title>${titulo} — UDLA</title>
+  <title>${titulo} — Universidad de la Amazonia</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
-    body { background: white; color: #111; padding: 0; }
+    @page { size: letter; margin: 0; }
 
-    .encabezado {
-      background: #0B750E;
-      color: white;
-      padding: 18px 28px 12px;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 11pt;
+      color: #111;
+      background: white;
+    }
+
+    /* ── Página ── */
+    .pagina {
+      width: 21.6cm;
+      min-height: 27.9cm;
+      margin: 0 auto;
+      padding: 0;
       display: flex;
       flex-direction: column;
-      gap: 8px;
     }
-    .encabezado-brand { display: flex; align-items: center; gap: 16px; }
-    .encabezado-logo  { font-size: 36px; font-weight: 900; letter-spacing: -2px;
-                        border-right: 3px solid rgba(255,255,255,0.4); padding-right: 16px; }
-    .encabezado-nombre strong { display: block; font-size: 16px; }
-    .encabezado-nombre span   { font-size: 12px; opacity: 0.85; }
-    .franja { height: 4px; background: #E81312; margin: 8px 0 4px; border-radius: 2px; }
-    .encabezado-meta { display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; }
-    .encabezado-meta p { padding-right: 16px; border-right: 1px solid rgba(255,255,255,0.3); }
-    .encabezado-meta p:last-child { border-right: none; }
 
-    .contenido { padding: 20px 28px; }
-
-    .subtitulo { font-size: 15px; font-weight: 700; color: #111; margin-bottom: 14px;
-                 border-bottom: 2px solid #0B750E; padding-bottom: 6px; }
-
-    table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-    th { background: #f0f0f0; border-bottom: 2px solid #ccc; color: #555;
-         font-size: 11px; font-weight: 800; letter-spacing: 0.06em;
-         padding: 9px 12px; text-align: left; }
-    td { border-bottom: 1px solid #e8e8e8; padding: 9px 12px; vertical-align: top; color: #222; }
-    tr:last-child td { border-bottom: none; }
-    tr:nth-child(even) { background: #fafafa; }
-
-    .pie {
-      border-top: 2px solid #0B750E;
+    /* ── Cabecera institucional ── */
+    .cabecera {
       display: flex;
+      align-items: flex-start;
       justify-content: space-between;
-      font-size: 10px;
-      color: #666;
-      margin: 16px 28px 0;
-      padding-top: 8px;
-      padding-bottom: 16px;
+      padding: 18px 2.5cm 12px;
+      border-bottom: 2.5px solid #0B750E;
+    }
+
+    .cabecera-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cabecera-logo img {
+      height: 65px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .cabecera-vigilada {
+      font-size: 7.5pt;
+      color: #555;
+      margin-top: 4px;
+      font-style: italic;
+    }
+
+    .cabecera-derecha {
+      text-align: right;
+      font-size: 9pt;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .cabecera-derecha strong {
+      font-size: 10pt;
+      color: #111;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .nit {
+      text-align: right;
+      font-size: 8.5pt;
+      color: #555;
+      padding: 5px 2.5cm 0;
+    }
+
+    /* ── Cuerpo del documento ── */
+    .cuerpo {
+      flex: 1;
+      padding: 18px 2.5cm 0;
+    }
+
+    .ref {
+      font-size: 9.5pt;
+      color: #555;
+      margin-bottom: 6px;
+      font-family: Arial, sans-serif;
+    }
+
+    .fecha-lugar {
+      font-size: 10.5pt;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    .asunto-bloque {
+      margin-bottom: 18px;
+    }
+
+    .asunto-bloque .asunto-titulo {
+      font-weight: bold;
+      font-size: 10.5pt;
+    }
+
+    .asunto-bloque .asunto-texto {
+      font-size: 10.5pt;
+    }
+
+    .intro-texto {
+      font-size: 10.5pt;
+      line-height: 1.7;
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+
+    /* ── Tabla ── */
+    .tabla-titulo {
+      font-size: 10pt;
+      font-weight: bold;
+      color: #0B750E;
+      border-bottom: 1.5px solid #0B750E;
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+      font-family: Arial, sans-serif;
+      letter-spacing: 0.03em;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      font-family: Arial, sans-serif;
+    }
+
+    thead { background: #f4f4f4; }
+
+    th {
+      background: #e8f5e9;
+      border: 1px solid #bbb;
+      color: #1a5c1e;
+      font-size: 8.5pt;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      padding: 7px 10px;
+      text-align: left;
+    }
+
+    td {
+      border: 1px solid #ddd;
+      padding: 7px 10px;
+      vertical-align: top;
+      color: #222;
+    }
+
+    tr.par td { background: #fafafa; }
+
+    .celda-num   { text-align: center; color: #888; width: 28px; }
+    .celda-tipo  { font-weight: 700; white-space: nowrap; }
+    .celda-fecha { white-space: nowrap; color: #555; font-size: 9pt; }
+
+    .badge {
+      border: 1.5px solid;
+      border-radius: 20px;
+      font-size: 8.5pt;
+      font-weight: 700;
+      padding: 2px 9px;
+      white-space: nowrap;
+    }
+
+    /* ── Cierre del documento ── */
+    .cierre {
+      padding: 22px 2.5cm 0;
+      font-size: 10.5pt;
+    }
+
+    .cierre p { margin-bottom: 8px; }
+
+    .firma {
+      margin-top: 32px;
+      font-size: 10pt;
+    }
+
+    .firma .nombre { font-weight: bold; }
+    .firma .cargo  { font-size: 9.5pt; color: #333; }
+
+    .elaborado {
+      font-size: 9pt;
+      color: #555;
+      margin-top: 24px;
+    }
+
+    /* ── Pie de página institucional ── */
+    .pie {
+      margin-top: auto;
+      display: flex;
+      align-items: stretch;
+      height: 52px;
+    }
+
+    .pie-bloque {
+      flex: 1;
+      background: #4a4a4a;
+    }
+
+    .pie-bloque:first-child { background: #2a2a2a; flex: 0.6; }
+    .pie-bloque:last-child  { background: #1a1a1a; flex: 0.6; }
+
+    .pie-centro {
+      flex: 3;
+      background: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 10px;
+      color: white;
+      font-size: 7.5pt;
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .pie-acento {
+      width: 6px;
+      background: #0B750E;
+    }
+
+    .pie-acento-rojo {
+      width: 6px;
+      background: #E81312;
     }
 
     @media print {
-      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .encabezado { background: #0B750E !important; color: white !important; }
-      .franja     { background: #E81312 !important; }
+      body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      .pie-bloque, .pie-bloque:first-child, .pie-bloque:last-child,
+      .pie-centro, .pie-acento, .pie-acento-rojo {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      thead { background: #e8f5e9 !important; }
+      th    { background: #e8f5e9 !important; }
+      tr.par td { background: #fafafa !important; }
     }
   </style>
 </head>
 <body>
-  <div class="encabezado">
-    <div class="encabezado-brand">
-      <div class="encabezado-logo">UDLA</div>
-      <div class="encabezado-nombre">
-        <strong>Universidad de la Amazonia</strong>
-        <span>Sistema de Gestión de Incidentes — ReportaUdla</span>
+<div class="pagina">
+
+  <!-- ══ Cabecera institucional ══ -->
+  <header class="cabecera">
+    <div class="cabecera-logo">
+      <img src="${logoUrl}" alt="Universidad de la Amazonia" />
+      <div>
+        <div class="cabecera-vigilada">Vigilada Ministerio de Educación Nacional</div>
       </div>
     </div>
-    <div class="franja"></div>
-    <div class="encabezado-meta">
-      <p><strong>${titulo}</strong></p>
-      <p>Periodo: ${rangoLabel}</p>
-      <p>Total registros: ${datos.length}</p>
-      <p>Generado: ${genDate}</p>
+    <div class="cabecera-derecha">
+      <strong>Sistema de Gestión de Incidentes</strong>
+      Bloque administrativo — Campus Porvenir<br/>
+      reportaudla@uniamazonia.edu.co
     </div>
-  </div>
+  </header>
 
-  <div class="contenido">
-    <p class="subtitulo">${titulo} — ${rangoLabel}</p>
+  <div class="nit">NIT: 891.190.548-1</div>
+
+  <!-- ══ Cuerpo ══ -->
+  <div class="cuerpo">
+
+    <div class="ref">${ref}</div>
+    <div class="fecha-lugar">Florencia Caquetá, ${fechaDoc}</div>
+
+    <div class="asunto-bloque">
+      <span class="asunto-titulo">Asunto: </span>
+      <span class="asunto-texto">${titulo} — Periodo ${rangoLabel}</span>
+    </div>
+
+    <p class="intro-texto">
+      A continuación se presenta el ${titulo.toLowerCase()} generado por el sistema
+      ReportaUdla de la Universidad de la Amazonia, correspondiente al periodo comprendido
+      entre ${rangoLabel}. El presente documento contiene
+      <strong>${datos.length} registro${datos.length !== 1 ? 's' : ''}</strong> y es de uso
+      exclusivo interno de la institución.
+    </p>
+
+    <div class="tabla-titulo">${titulo.toUpperCase()} — ${rangoLabel}</div>
+
     ${datos.length === 0
-      ? '<p style="color:#888;padding:24px 0;text-align:center">No hay registros para los filtros seleccionados.</p>'
+      ? '<p style="color:#888;padding:20px 0;text-align:center;font-family:Arial">No hay registros para los filtros seleccionados.</p>'
       : `<table><thead><tr>${cabeceras}</tr></thead><tbody>${filas}</tbody></table>`
     }
+
   </div>
 
-  <div class="pie">
-    <span>Universidad de la Amazonia — ReportaUdla</span>
-    <span>Generado el ${genDate}</span>
-    <span>Confidencial — Uso interno</span>
+  <!-- ══ Cierre ══ -->
+  <div class="cierre">
+    <div class="firma">
+      <div class="nombre">Administrador del Sistema</div>
+      <div class="cargo">ReportaUdla — Universidad de la Amazonia</div>
+      <div class="cargo">Florencia, Caquetá</div>
+    </div>
+    <div class="elaborado">Elaborado por: Sistema ReportaUdla — ${genDate}</div>
   </div>
 
-  <script>window.onload = function(){ window.print(); }</script>
+  <!-- ══ Pie institucional ══ -->
+  <footer class="pie">
+    <div class="pie-bloque"></div>
+    <div class="pie-acento"></div>
+    <div class="pie-bloque"></div>
+    <div class="pie-acento-rojo"></div>
+    <div class="pie-centro">
+      <span>Calle 17 diagonal 17 con carrera 3F Barrio El Porvenir &nbsp;·&nbsp; atencionciudadano@uniamazonia.edu.co</span>
+      <span>www.uniamazonia.edu.co &nbsp;·&nbsp; Florencia Caquetá</span>
+    </div>
+    <div class="pie-acento"></div>
+    <div class="pie-bloque"></div>
+    <div class="pie-acento-rojo"></div>
+    <div class="pie-bloque"></div>
+  </footer>
+
+</div>
+<script>window.onload = function(){ window.print(); }</script>
 </body>
 </html>`
 
-    const ventana = window.open('', '_blank', 'width=900,height=700')
+    const ventana = window.open('', '_blank', 'width=960,height=780')
     if (!ventana) {
       alert('Permite las ventanas emergentes para imprimir el reporte.')
       return
