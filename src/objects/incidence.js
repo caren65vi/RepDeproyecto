@@ -1,14 +1,38 @@
 import { doc, setDoc } from 'firebase/firestore'
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
-import { db, storage } from '../FireBase/config'
+import { db } from '../FireBase/config'
 
 function generateId() {
   try {
     if (typeof crypto !== 'undefined' && crypto.randomUUID) return crypto.randomUUID()
   } catch {
-    // Use the timestamp fallback when randomUUID is unavailable.
+    // fallback timestamp
   }
   return `inc_${Date.now()}_${Math.floor(Math.random() * 10000)}`
+}
+
+// Comprime y convierte la imagen a Base64 (máx 800px, calidad 75%)
+function comprimirImagen(file) {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    const url = URL.createObjectURL(file)
+    img.onload = () => {
+      const MAX = 800
+      let w = img.width
+      let h = img.height
+      if (w > MAX || h > MAX) {
+        if (w > h) { h = Math.round((h * MAX) / w); w = MAX }
+        else        { w = Math.round((w * MAX) / h); h = MAX }
+      }
+      const canvas = document.createElement('canvas')
+      canvas.width = w
+      canvas.height = h
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h)
+      URL.revokeObjectURL(url)
+      resolve(canvas.toDataURL('image/jpeg', 0.75))
+    }
+    img.onerror = reject
+    img.src = url
+  })
 }
 
 export const allowedTypes = ['electrico', 'infraestructura', 'plomeria', 'seguridad', 'otro']
@@ -69,27 +93,14 @@ export class Incidence {
     if (!this.idUsuario) throw new Error('Debes iniciar sesion para enviar un reporte.')
 
     if (photoFile) {
-      const safeName = photoFile.name.replace(/[^a-zA-Z0-9._-]/g, '_')
-      const photoRef = ref(storage, `incidencias/${this.idUsuario}/${this.id}_${safeName}`)
-      console.log('[Incidence] uploadBytes', { photoRefPath: photoRef.fullPath, safeName, fileName: photoFile.name })
       try {
-        await uploadBytes(photoRef, photoFile)
-        this.foto = await getDownloadURL(photoRef)
-        console.log('[Incidence] foto subida, URL obtenida', this.foto)
-      } catch (storageError) {
-        console.error('[Storage] código:', storageError?.code)
-        console.error('[Storage] mensaje:', storageError?.message)
-        console.error('[Storage] error completo:', storageError)
-        const code = storageError?.code ?? ''
-        if (code === 'storage/unauthorized') throw new Error('Sin permiso para subir archivos. Ve a Firebase Console → Storage → Rules y permite escritura.')
-        if (code === 'storage/canceled') throw new Error('La subida fue cancelada.')
-        if (code === 'storage/unknown') throw new Error('Storage no está habilitado. Ve a Firebase Console → Storage y actívalo.')
-        throw new Error(`Error Storage [${code || 'sin código'}]: ${storageError?.message ?? 'error desconocido'}`)
+        this.foto = await comprimirImagen(photoFile)
+      } catch (imgError) {
+        throw new Error('No se pudo procesar la imagen. Intenta con otra foto.')
       }
     }
 
     const data = this.mostrar()
-    console.log('[Incidence] datos a guardar en Firestore', data)
     const { valid, errors } = validateIncidence(data)
     if (!valid) {
       const error = new Error(errors.join(' '))
@@ -98,13 +109,12 @@ export class Incidence {
     }
 
     try {
-      await setDoc(doc(db, 'incidencias', this.id), data)
-      console.log('[Incidence] documento guardado en Firestore', this.id)
+      await setDoc(doc(db, 'incidente', this.id), data)
     } catch (firestoreError) {
-      console.error('[Incidence] Error al guardar en Firestore:', firestoreError)
+      console.error('[Incidence] Error Firestore:', firestoreError)
       const code = firestoreError?.code ?? ''
-      if (code === 'permission-denied') throw new Error('Sin permiso para guardar el reporte. Revisa las reglas de Firestore.')
-      throw new Error(`Error al guardar el reporte (${code || firestoreError.message}).`)
+      if (code === 'permission-denied') throw new Error('Sin permiso para guardar. Revisa las reglas de Firestore.')
+      throw new Error(`Error al guardar (${code || firestoreError.message}).`)
     }
 
     return data

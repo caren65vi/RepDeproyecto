@@ -1,39 +1,88 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-
-
 .login-wrapper {
-  min-height: 100dvh;
-  width: 100%;
-  background: var(--loginBg);
-  background-image:
-    var(--loginGlowLeft),
-    var(--loginGlowRight);
-  background-attachment: fixed;
-  display: flex;
   align-items: center;
+  background:
+    radial-gradient(circle at 16% 18%, rgba(11, 117, 14, 0.12), transparent 26rem),
+    radial-gradient(circle at 88% 86%, rgba(22, 149, 134, 0.12), transparent 24rem),
+    var(--bg);
+  display: grid;
+  gap: clamp(3rem, 8vw, 9rem);
+  grid-template-columns: minmax(260px, 380px) minmax(360px, 440px);
   justify-content: center;
-  padding: 2rem 1.5rem;
-  overflow-x: hidden;
+  min-height: 100dvh;
+  overflow: hidden;
+  padding: 3rem;
+  position: relative;
 }
 
+.login-wrapper::before {
+  background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+  background-size: 26px 26px;
+  content: '';
+  inset: 0;
+  opacity: 0.7;
+  pointer-events: none;
+  position: absolute;
+}
+
+.login-wrapper > * {
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.login-header-brand {
+  max-width: 360px;
+}
+
+.login-header-brand::before {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 999px;
+  content: '';
+  display: block;
+  height: 5px;
+  margin-bottom: 1.25rem;
+  width: 64px;
+}
+
+.login-header-brand h1 {
+  color: var(--text);
+  font-size: clamp(2.7rem, 4vw, 4.2rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.login-header-brand p {
+  color: var(--text);
+  font-size: 1.12rem;
+  line-height: 1.45;
+  margin-top: 1rem;
+  max-width: 290px;
+}
+
+.login-header-brand small {
+  color: var(--textMuted);
+  display: block;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  margin-top: 0.55rem;
+  text-transform: uppercase;
+}
 
 .login-loading {
-  min-height: 100dvh;
-  display: flex;
   align-items: center;
+  color: var(--textMuted);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   justify-content: center;
+  min-height: 100dvh;
 }
-
 
 .login-session {
+  color: var(--text);
   padding: 2rem;
 }
-
 
 .login-wrapper > .MuiBox-root {
   min-height: auto !important;
@@ -41,17 +90,10 @@
 }
 
 .login-wrapper .MuiContainer-root {
-  width: 100% !important;
-  max-width: 500px !important;
+  max-width: 440px !important;
   padding: 0 !important;
+  width: 100% !important;
 }
-
-
-.login-wrapper form > .MuiStack-root {
-  margin-top: 1.75rem !important;
-  row-gap: 0.75rem !important;
-}
-
 
 .login-wrapper .MuiContainer-root > .MuiStack-root,
 .login-wrapper .MuiCard-root,
@@ -59,301 +101,171 @@
   background: var(--loginCardBg) !important;
   background-image: none !important;
   border: 1px solid var(--border) !important;
-  border-radius: 16px !important;
-  box-shadow: var(--shadow) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 18px 55px rgba(34, 34, 34, 0.14) !important;
+  max-width: 440px !important;
+  padding: 2rem !important;
   width: 100% !important;
-  max-width: 520px !important;
-  padding: 3.2rem 2.8rem !important;
-  backdrop-filter: blur(6px);
 }
 
-
-
 .login-wrapper h5,
+.login-wrapper .MuiTypography-h5 {
+  color: var(--text) !important;
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em;
+  line-height: 1.1 !important;
+}
+
 .login-wrapper h6,
-.login-wrapper .MuiTypography-h5,
 .login-wrapper .MuiTypography-h6 {
   color: var(--text) !important;
   font-weight: 700 !important;
 }
 
-
-.login-wrapper h5,
-.login-wrapper .MuiTypography-h5 {
-  font-size: 1.85rem !important;
-  line-height: 1.2 !important;
-}
-
-
 .login-wrapper .MuiTypography-body2,
 .login-wrapper .MuiTypography-subtitle1 {
   color: var(--textMuted) !important;
+  font-size: 0.9rem !important;
 }
 
-
+.login-wrapper form > .MuiStack-root {
+  margin-top: 1rem !important;
+  row-gap: 0.7rem !important;
+}
 
 .login-wrapper .MuiOutlinedInput-root {
-  background-color: var(--loginFieldBg) !important;
-  border-radius: 8px !important;
+  background: var(--loginFieldBg) !important;
+  border-radius: 10px !important;
   color: var(--text) !important;
   min-height: 48px !important;
+  transition: box-shadow 0.2s ease !important;
 }
-
 
 .login-wrapper .MuiOutlinedInput-root fieldset {
   border-color: var(--border) !important;
 }
 
-
-.login-wrapper .MuiOutlinedInput-root:hover fieldset {
+.login-wrapper .MuiOutlinedInput-root:hover fieldset,
+.login-wrapper .MuiOutlinedInput-root.Mui-focused fieldset {
   border-color: var(--accent) !important;
 }
 
-
-.login-wrapper .MuiOutlinedInput-root.Mui-focused fieldset {
-  border-color: var(--primary) !important;
-  border-width: 2px !important;
+.login-wrapper .MuiOutlinedInput-root.Mui-focused {
+  box-shadow: 0 0 0 3px var(--accentSoft) !important;
 }
-
 
 .login-wrapper .MuiInputLabel-root {
   color: var(--textSubtle) !important;
 }
 
-
 .login-wrapper .MuiInputLabel-root.Mui-focused {
   color: var(--accent) !important;
 }
-
 
 .login-wrapper input {
   color: var(--text) !important;
 }
 
-
-.login-wrapper input::placeholder {
-  color: var(--loginPlaceholder) !important;
-  opacity: 1;
+.login-wrapper .MuiButton-containedPrimary,
+.login-wrapper .MuiButton-outlined,
+.login-wrapper .MuiButton-outlinedPrimary {
+  border-radius: 10px !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em;
+  min-height: 46px;
+  text-transform: none !important;
 }
-
-
 
 .login-wrapper .MuiButton-containedPrimary {
   background: var(--loginButtonBg) !important;
-  color: var(--primaryContrast) !important;
-  font-weight: 700 !important;
-  border-radius: 10px !important;
-  text-transform: none !important;
-  font-size: 1rem !important;
-  padding: 14px 20px !important;
-  box-shadow: var(--loginButtonShadow) !important;
-  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.2, 1) !important;
-  letter-spacing: 0.3px;
+  box-shadow: 0 8px 22px rgba(11, 117, 14, 0.28) !important;
+  color: #ffffff !important;
 }
-
 
 .login-wrapper .MuiButton-containedPrimary:hover {
   background: var(--loginButtonHoverBg) !important;
-  box-shadow: var(--loginButtonHoverShadow) !important;
-  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(11, 117, 14, 0.36) !important;
 }
-
 
 .login-wrapper .MuiButton-outlined,
 .login-wrapper .MuiButton-outlinedPrimary {
+  background: var(--surfaceSoft) !important;
   border-color: var(--border) !important;
   color: var(--text) !important;
-  font-weight: 500 !important;
-  border-radius: 8px !important;
-  text-transform: none !important;
-  font-size: 1rem !important;
-  padding: 12px 16px !important;
-  transition: border-color 0.2s, background-color 0.2s, color 0.2s !important;
 }
-
 
 .login-wrapper .MuiButton-outlined:hover,
 .login-wrapper .MuiButton-outlinedPrimary:hover {
+  background: var(--accentSoft) !important;
   border-color: var(--accent) !important;
-  background-color: var(--accentSoft) !important;
   color: var(--accent) !important;
 }
-
-
-
-.login-wrapper .MuiDivider-root {
-  border-color: var(--border) !important;
-}
-
 
 .login-wrapper .MuiDivider-root::before,
 .login-wrapper .MuiDivider-root::after {
   border-color: var(--border) !important;
 }
 
-
 .login-wrapper .MuiDivider-wrapper {
-  color: var(--loginDividerText) !important;
-  font-size: 0.85rem;
+  color: var(--textSubtle) !important;
+  font-size: 0.75rem;
+  text-transform: uppercase;
 }
 
+.login-wrapper .MuiAlert-root {
+  background: var(--loginAlertBg) !important;
+  border: 1px solid var(--dangerBorder) !important;
+  border-radius: 9px !important;
+  color: var(--loginAlertText) !important;
+}
 
+.login-wrapper .MuiCheckbox-root {
+  color: var(--border) !important;
+}
 
-.login-wrapper a,
-.login-wrapper .MuiLink-root {
+.login-wrapper .MuiCheckbox-root.Mui-checked {
   color: var(--accent) !important;
 }
 
-
-.login-wrapper a:hover,
-.login-wrapper .MuiLink-root:hover {
-  color: var(--accentLight) !important;
+.login-wrapper .MuiFormControlLabel-label {
+  color: var(--textMuted) !important;
+  font-size: 0.85rem !important;
 }
 
-
-.login-wrapper .MuiAlert-root {
-  background-color: var(--loginAlertBg) !important;
-  border: 1px solid var(--dangerBorder) !important;
-  color: var(--loginAlertText) !important;
-  border-radius: 10px !important;
-}
-
-
-
-@media (min-width: 600px) and (max-width: 1024px) {
-  
+@media (max-width: 1024px) {
   .login-wrapper {
-    padding: 1.5rem 2rem;
+    align-content: start;
+    gap: 1.5rem;
+    grid-template-columns: minmax(0, 560px);
+    justify-items: center;
+    padding: 2rem 1.25rem;
   }
 
-  
-  .login-wrapper .MuiContainer-root {
-    max-width: 560px !important;
+  .login-header-brand {
+    display: block;
+    max-width: 100%;
+    text-align: center;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-wrapper {
+    align-content: start;
+    padding-top: 2rem;
   }
 
-  
   .login-wrapper .MuiContainer-root > .MuiStack-root,
   .login-wrapper .MuiCard-root,
   .login-wrapper .MuiPaper-root {
-    max-width: 560px !important;
-    padding: 3rem 2.75rem !important;
+    border-radius: 14px !important;
+    padding: 1.35rem !important;
   }
 
-  
-  .login-wrapper form > .MuiStack-root {
-    margin-top: 2rem !important;
-    row-gap: 1.15rem !important;
-  }
-
-  
   .login-wrapper h5,
   .login-wrapper .MuiTypography-h5 {
-    font-size: 3rem !important;
-  }
-
-  
-  .login-wrapper .MuiTypography-body2,
-  .login-wrapper .MuiTypography-subtitle1 {
-    font-size: 1.25rem !important;
-  }
-
-  
-  .login-wrapper .MuiOutlinedInput-root {
-    min-height: 54px !important;
-  }
-
-  
-  .login-wrapper .MuiOutlinedInput-root input {
-    font-size: 1rem !important;
-  }
-
-  
-  .login-wrapper form > .MuiStack-root,
-  .login-wrapper .MuiContainer-root > .MuiStack-root {
-    align-items: stretch !important;
-  }
-
-  
-  .login-wrapper .MuiOutlinedInput-root,
-  .login-wrapper .MuiButton-containedPrimary,
-  .login-wrapper .MuiButton-outlined {
-    
-    width: 100% !important;
-    
-  }
-
-  
-  .login-wrapper .MuiButton-containedPrimary,
-  .login-wrapper .MuiButton-outlined {
-    gap: 0.5rem !important;
-    font-size: 1.25rem !important;
-    padding: 14px 16px !important;
-  }
-
-  
-  .login-wrapper .MuiButton-containedPrimary {
-    width: 100% !important;
-  }
-}
-
-
-
-@media (max-width: 599px) {
-  
-  .login-wrapper {
-    padding: 1.5rem 1rem;
-    align-items: center;
-  }
-
-  
-  .login-wrapper .MuiContainer-root {
-    max-width: 360px !important;
-  }
-
-  
-  .login-wrapper .MuiContainer-root > .MuiStack-root,
-  .login-wrapper .MuiCard-root,
-  .login-wrapper .MuiPaper-root {
-    border-radius: 12px !important;
-    max-width: 360px !important;
-    padding: 2rem 1.25rem !important;
-  }
-
-
-  
-  .login-wrapper h5,
-  .login-wrapper h6,
-  .login-wrapper .MuiTypography-h5,
-  .login-wrapper .MuiTypography-h6 {
-    font-size: 1.35rem !important;
-    display: block !important;
-    visibility: visible !important;
-  }
-
-  
-  .login-wrapper .MuiTypography-body2,
-  .login-wrapper .MuiTypography-subtitle1 {
-    display: block !important;
-    visibility: visible !important;
-    font-size: 0.9rem !important;
-  }
-
-  
-  .login-wrapper form > .MuiStack-root,
-  .login-wrapper .MuiContainer-root > .MuiStack-root {
-    align-items: stretch !important;
-  }
-
-  
-  .login-wrapper .MuiButton-containedPrimary,
-  .login-wrapper .MuiButton-outlined {
-    width: 100% !important;
-    font-size: 0.95rem !important;
-    padding: 14px 16px !important;
-  }
-
-  
-  .login-wrapper .MuiOutlinedInput-root input {
-    font-size: 0.95rem !important;
+    font-size: 1.55rem !important;
   }
 }

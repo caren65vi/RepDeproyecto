@@ -40,22 +40,14 @@
 }
 
 .cta__btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: var(--btnPadding);
-    border-radius: var(--btnRadius);
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
+    justify-content: center;
 }
 
 .cta__btn--primary {
     background: var(--surface);
     color: var(--text);
     border: 1px solid var(--border);
+    box-shadow: none;
 }
 
 .cta__btn--primary:hover {
@@ -67,6 +59,7 @@
     background: var(--surface);
     color: var(--text);
     border: 1px solid var(--border);
+    box-shadow: none;
 }
 
 .cta__btn--secondary:hover {

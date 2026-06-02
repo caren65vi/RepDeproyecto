@@ -102,6 +102,10 @@
    TABLET (768px – 1024px)
 ══════════════════════════════════════ */
 @media (min-width: 768px) and (max-width: 1024px) {
+  .homeMain {
+    min-height: auto;
+  }
+
   .information {
     padding: 3rem 3rem 2rem;
     gap: 20px;
@@ -127,20 +131,13 @@
     width: auto;
   }
 
-  /* Tablet: cards 2-column grid */
+  /* Ocultar placeholders vacíos en tablet */
   .additionalInfo {
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 1.5rem 3rem 3rem;
+    display: none;
   }
 
-  .additionalInfo div {
-    flex: 1 1 calc(50% - 6px);
-    min-height: 130px;
-  }
-
-  .additionalInfo div:last-child:nth-child(odd) {
-    flex: 1 1 100%;
+  .homeMain hr {
+    display: none;
   }
 }
 

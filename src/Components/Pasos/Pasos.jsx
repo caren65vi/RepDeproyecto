@@ -10,7 +10,7 @@ const pasos = [
 
 const Pasos = () => {
     return (
-        <section className="pasos">
+        <section id="como-funciona" className="pasos">
             <div className="pasos__header">
                 <span className="pasos__label">Cómo funciona</span>
                 <h2 className="pasos__title">En 4 pasos simples</h2>

@@ -127,6 +127,11 @@ const Login = () => {
   return (
     <AppProvider theme={appTheme}>
       <div className="login-wrapper">
+        <div className="login-header-brand">
+          <h1>ResuelveUA</h1>
+          <p>Plataforma de Reportes de Incidentes</p>
+          <small>Universidad de la Amazonia</small>
+        </div>
         <SignInPage
           signIn={signIn}
           providers={providers}

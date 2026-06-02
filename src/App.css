@@ -86,21 +86,24 @@
   :root {
     color-scheme: dark;
 
-    --bg: #0d1a0d;
-    --surface: #111e11;
-    --surfaceSoft: #172817;
-    --navDashBg: #141f14;
-    --navUserBg: #101910;
-    --border: #2a3d2a;
+    /* Fondos neutros (slate/charcoal) — sin tinte verde */
+    --bg: #0f1117;
+    --surface: #161b27;
+    --surfaceSoft: #1d2235;
+    --navDashBg: #131825;
+    --navUserBg: #0d1220;
+    --border: #252d40;
 
-    --text: #e8f0e7;
-    --textMuted: #8fa08e;
-    --textSubtle: #5a6b59;
-    --textH: #e8f0e7;
+    /* Texto neutro claro */
+    --text: #dde3f0;
+    --textMuted: #8892a8;
+    --textSubtle: #4e5870;
+    --textH: #dde3f0;
 
+    /* Acentos de marca — verde/teal institucional */
     --primary: #34AB1E;
     --primaryHover: #2d9219;
-    --primaryContrast: #0d1a0d;
+    --primaryContrast: #0f1117;
     --accent: #4dbfb0;
     --accentHover: #3aa89a;
     --accentLight: #7dd4cc;
@@ -115,27 +118,28 @@
     --dangerHover: #f47170;
     --info: #4dbfb0;
 
-    --socialBg: #172817;
-    --overlayBg: rgba(0, 0, 0, 0.60);
-    --navShadow: 6px 0 40px rgba(0, 0, 0, 0.65);
-    --cardShadow: 0 4px 20px rgba(0, 0, 0, 0.30);
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
+    --socialBg: #1d2235;
+    --overlayBg: rgba(0, 0, 0, 0.65);
+    --navShadow: 6px 0 40px rgba(0, 0, 0, 0.70);
+    --cardShadow: 0 4px 20px rgba(0, 0, 0, 0.40);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.60);
 
     --btnShadow: 0 4px 16px rgba(52, 171, 30, 0.24);
     --btnShadowAccent: 0 8px 28px rgba(52, 171, 30, 0.32);
     --btnFocusRing: rgba(52, 171, 30, 0.40);
-    --btnActiveShadow: 0 4px 12px rgba(0, 0, 0, 0.30), inset 0 2px 6px rgba(0, 0, 0, 0.15);
+    --btnActiveShadow: 0 4px 12px rgba(0, 0, 0, 0.40), inset 0 2px 6px rgba(0, 0, 0, 0.20);
     --btnShine: linear-gradient(120deg, rgba(255, 255, 255, 0.02) 0%, rgba(77, 191, 176, 0.14) 50%, rgba(255, 255, 255, 0.02) 100%);
     --btnPulseStart: rgba(52, 171, 30, 0.35);
     --btnPulseEnd: rgba(52, 171, 30, 0);
 
-    --loginBg: linear-gradient(135deg, #060e06 0%, #0d1a0d 50%, #081408 100%);
-    --loginGlowLeft: radial-gradient(ellipse at 20% 50%, rgba(11, 117, 14, 0.16) 0%, transparent 60%);
+    /* Login dark — fondo neutro oscuro con glows de acento */
+    --loginBg: linear-gradient(135deg, #080a10 0%, #0f1117 50%, #0b0e18 100%);
+    --loginGlowLeft: radial-gradient(ellipse at 20% 50%, rgba(11, 117, 14, 0.14) 0%, transparent 60%);
     --loginGlowRight: radial-gradient(ellipse at 80% 20%, rgba(77, 191, 176, 0.10) 0%, transparent 50%);
-    --loginCardBg: rgba(13, 26, 13, 0.97);
-    --loginFieldBg: #0a140a;
-    --loginPlaceholder: #3d5c3d;
-    --loginDividerText: #3d5c3d;
+    --loginCardBg: rgba(22, 27, 39, 0.98);
+    --loginFieldBg: #0f1117;
+    --loginPlaceholder: #4e5870;
+    --loginDividerText: #4e5870;
     --loginAlertBg: rgba(232, 19, 18, 0.15);
     --loginAlertText: #f4a0a0;
     --loginButtonBg: linear-gradient(135deg, #0B750E 0%, #086b0b 100%);

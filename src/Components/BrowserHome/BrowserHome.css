@@ -1,18 +1,18 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+.browserHome {
+  align-items: center;
+  background: color-mix(in srgb, var(--surface) 92%, var(--accent) 8%);
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 72%, var(--accent) 28%);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+  display: flex;
+  gap: clamp(1rem, 2.5vw, 2.75rem);
+  padding: 15px clamp(20px, 4vw, 52px);
 }
 
-.browserHome {
-  display: flex;
-  justify-content: space-between;
+.browserHomeBrand {
   align-items: center;
-  padding: 18px 40px;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  gap: 40px;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-shrink: 0;
+  gap: 14px;
 }
 
 .browserHomeIcon {
@@ -20,93 +20,123 @@
 }
 
 .browserHomeIcon img {
-  width: 56px;
-  height: 56px;
+  border-radius: 11px;
+  display: block;
+  height: 52px;
   object-fit: contain;
-  border-radius: 10px;
+  width: 52px;
 }
 
 .browserHomeTitle {
-  flex: 1;
+  flex-shrink: 0;
 }
 
 .browserHomeTitle h3 {
-  margin: 0;
-  font-size: 22px;
   color: var(--text);
+  font-size: 21px;
   font-weight: 700;
   letter-spacing: 0.01em;
+  line-height: 1.1;
 }
 
-.browserHomeTitle p {
-  margin: 3px 0 0 0;
-  font-size: 13px;
+.browserHomeTitle small {
   color: var(--textMuted);
+  display: block;
+  font-size: 12px;
+  margin-top: 4px;
+  white-space: nowrap;
+}
+
+.browserHomeQuicklinks {
+  align-items: center;
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-left: auto;
+  order: 2;
+}
+
+.browserHomeQuicklinks a {
+  border-radius: 8px;
+  color: var(--textMuted);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 10px;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.browserHomeQuicklinks a:hover,
+.browserHomeQuicklinks a:focus-visible {
+  background: var(--accentSoft);
+  color: var(--accent);
+  outline: none;
 }
 
 .browserHomeButtons {
   display: flex;
-  gap: 12px;
   flex-shrink: 0;
+  gap: 10px;
+  order: 3;
 }
 
-@media (max-width: 768px) {
+.browserHomeButtons .btn {
+  font-size: 14px;
+  padding: 9px 13px;
+}
+
+@media (max-width: 1040px) {
   .browserHome {
-    padding: 12px 20px;
-    gap: 10px;
+    gap: 1rem;
+    padding-inline: 20px;
+  }
+
+  .browserHomeQuicklinks a {
+    font-size: 13px;
+    padding-inline: 7px;
+  }
+}
+
+@media (max-width: 860px) {
+  .browserHomeQuicklinks {
+    display: none;
+  }
+
+  .browserHomeButtons {
+    margin-left: auto;
+  }
+
+  .browserHomeTitle h3 {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 520px) {
+  .browserHome {
+    padding: 11px 14px;
   }
 
   .browserHomeIcon img {
-    width: 44px;
-    height: 44px;
+    height: 42px;
+    width: 42px;
   }
 
   .browserHomeTitle h3 {
     font-size: 17px;
   }
 
-  .browserHomeTitle p {
-    font-size: 12px;
-  }
-
-  .browserHomeButtons .btn {
-    padding: 9px 12px;
-    gap: 0;
-  }
-
-  .btnText {
+  .browserHomeTitle small {
     display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .browserHome {
-    padding: 16px 18px;
-    gap: 12px;
-  }
-
-  .browserHomeIcon img {
-    width: 52px;
-    height: 52px;
-  }
-
-  .browserHomeTitle h3 {
-    font-size: 20px;
-  }
-
-  .browserHomeTitle p {
-    font-size: 13px;
   }
 
   .browserHomeButtons {
-    gap: 10px;
-    flex-shrink: 0;
+    gap: 7px;
   }
 
   .browserHomeButtons .btn {
-    padding: 12px 14px;
     gap: 0;
-    font-size: 1.1rem;
+    padding: 9px 10px;
   }
 
   .btnText {

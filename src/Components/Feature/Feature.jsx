@@ -59,7 +59,7 @@ const Feature = () => {
     }, [])
 
     return (
-        <section className="features">
+        <section id="funcionalidades" className="features">
             <div className="features__header">
                 <span className="features__label">Funcionalidades</span>
                 <h2 className="features__title">Todo lo que necesitas para reportar</h2>
