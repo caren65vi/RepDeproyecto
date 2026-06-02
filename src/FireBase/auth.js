@@ -11,7 +11,7 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { collection, doc, getDoc, getDocs, limit, query, where } from "firebase/firestore";
-import { RegularUser } from "../objects/regularUser";
+import { RegularUser } from "../objects/regularUser.js";
 
 const googleProvider   = new GoogleAuthProvider();
 const githubProvider   = new GithubAuthProvider();

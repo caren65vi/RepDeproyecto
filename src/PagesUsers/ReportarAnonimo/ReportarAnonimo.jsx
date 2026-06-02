@@ -11,7 +11,7 @@ import Feature from '../../Components/Feature/Feature.jsx'
 import Pasos from '../../Components/Pasos/Pasos.jsx'
 import Cta from '../../Components/Cta/Cta.jsx'
 import Footer from '../../Components/Footer/Footer.jsx'
-import { createIncidence, comprimirImagen } from '../../objects/incidence'
+import { createIncidence, comprimirImagen } from '../../objects/incidence.js'
 import '../Reportar/Reportar.css'
 import './ReportarAnonimo.css'
 
