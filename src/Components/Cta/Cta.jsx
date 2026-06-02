@@ -1,4 +1,4 @@
-import './CTA.css';
+import './Cta.css';
 import { useNavigate } from 'react-router-dom';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
