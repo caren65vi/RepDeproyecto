@@ -10,13 +10,21 @@ import {
 } from '../../Components/IncidentNotifier/notificationHistory'
 import './Notificaciones.css'
 
+const STATE_ALIAS = {
+  abierto: 'reportado',
+  en_proceso: 'analisis',
+  cerrado: 'resuelto',
+}
+
+const normalizeState = (state) => STATE_ALIAS[state] || state
+
 function getStateLabel(state) {
   const labels = {
     reportado: 'Reportado',
     analisis: 'En análisis',
     resuelto: 'Resuelto',
   }
-  return labels[state] || state || 'Sin estado'
+  return labels[normalizeState(state)] || state || 'Sin estado'
 }
 
 function formatDate(value) {
@@ -73,7 +81,7 @@ const Notificaciones = () => {
                     <time dateTime={notification.createdAt}>{formatDate(notification.createdAt)}</time>
                   </div>
                   <p>{notification.body}</p>
-                  <span className={`notificationState notificationState--${notification.state}`}>
+                  <span className={`notificationState notificationState--${normalizeState(notification.state)}`}>
                     {getStateLabel(notification.state)}
                   </span>
                 </div>

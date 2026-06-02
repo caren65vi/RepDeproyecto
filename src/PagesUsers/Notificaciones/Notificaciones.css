@@ -190,12 +190,19 @@
   text-transform: uppercase;
 }
 
-.notificationState--abierto {
+.notificationState--abierto,
+.notificationState--reportado {
   background: var(--accentSoft);
   color: var(--accent);
 }
 
-.notificationState--cerrado {
+.notificationState--analisis {
+  background: var(--accentSoft);
+  color: var(--accent);
+}
+
+.notificationState--cerrado,
+.notificationState--resuelto {
   background: var(--surfaceSoft);
   color: var(--textMuted);
 }

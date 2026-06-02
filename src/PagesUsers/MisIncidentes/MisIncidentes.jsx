@@ -15,16 +15,24 @@ const TIPO_LABEL = {
   otro:            'Otro',
 }
 
+const STATE_ALIAS = {
+  abierto: 'reportado',
+  en_proceso: 'analisis',
+  cerrado: 'resuelto',
+}
+
+const normalizeState = (state) => STATE_ALIAS[state] || state
+
 const ESTADO_LABEL = {
-  abierto:    'Abierto',
-  en_proceso: 'En proceso',
-  cerrado:    'Cerrado',
+  reportado: 'Reportado',
+  analisis: 'En análisis',
+  resuelto: 'Resuelto',
 }
 
 const ESTADO_CLASS = {
-  abierto:    'misIncidenteEstadoAbierto',
-  en_proceso: 'misIncidenteEstadoProceso',
-  cerrado:    'misIncidenteEstadoCerrado',
+  reportado: 'misIncidenteEstadoAbierto',
+  analisis: 'misIncidenteEstadoProceso',
+  resuelto: 'misIncidenteEstadoCerrado',
 }
 
 const formatDate = (iso) => {
@@ -129,8 +137,8 @@ const MisIncidentes = () => {
                 <div className="misIncidenteTop">
                   <div className="misIncidenteBadges">
                     <span className="misIncidenteTipo">{TIPO_LABEL[inc.tipo] ?? inc.tipo}</span>
-                    <span className={`misIncidenteEstado ${ESTADO_CLASS[inc.estado] ?? ''}`}>
-                      {ESTADO_LABEL[inc.estado] ?? inc.estado}
+                    <span className={`misIncidenteEstado ${ESTADO_CLASS[normalizeState(inc.estado)] ?? ''}`}>
+                      {ESTADO_LABEL[normalizeState(inc.estado)] ?? inc.estado}
                     </span>
                   </div>
                   <span className="misIncidenteFecha">{formatDate(inc.createdAt)}</span>

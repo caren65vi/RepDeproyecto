@@ -11,18 +11,24 @@ const typeLabels = {
   otro:            'Otro',
 }
 
+const STATE_ALIAS = {
+  abierto: 'reportado',
+  en_proceso: 'analisis',
+  cerrado: 'resuelto',
+}
+
+const normalizeState = (state) => STATE_ALIAS[state] || state
+
 const stateLabels = {
-  abierto:    'Abierto',
-  en_proceso: 'En proceso',
-  cerrado:    'Cerrado',
-  reportado:  'Reportado',
+  reportado: 'Reportado',
+  analisis: 'En análisis',
+  resuelto: 'Resuelto',
 }
 
 const stateCls = {
-  abierto:    'latestIncidentStateAbierto',
-  en_proceso: 'latestIncidentStateProceso',
-  cerrado:    'latestIncidentStateCerrado',
-  reportado:  'latestIncidentStateReportado',
+  reportado: 'latestIncidentStateAbierto',
+  analisis: 'latestIncidentStateProceso',
+  resuelto: 'latestIncidentStateCerrado',
 }
 
 const placeholders = Array.from({ length: 3 }, (_, i) => ({ id: `ph-${i}`, placeholder: true }))
@@ -33,16 +39,14 @@ const LatestIncidents = () => {
   const [error,     setError]     = useState('')
 
   useEffect(() => {
-    const latestIncidentsQuery = query(
-      collection(db, 'incidente'),
-      orderBy('createdAt', 'desc'),
-      limit(3),
-    )
-
     return onSnapshot(
-      latestIncidentsQuery,
+      collection(db, 'incidente'),
       (snapshot) => {
-        setIncidents(snapshot.docs.map(d => ({ id: d.id, ...d.data() })))
+        const docs = snapshot.docs
+          .map(d => ({ id: d.id, ...d.data() }))
+          .sort((a, b) => (b.createdAt ?? '').localeCompare(a.createdAt ?? ''))
+          .slice(0, 3)
+        setIncidents(docs)
         setRevision(r => r + 1)
         setError('')
       },
@@ -93,8 +97,8 @@ const LatestIncidents = () => {
               <div className="latestIncidentContent">
                 <div className="latestIncidentMeta">
                   <strong>{typeLabels[incident.tipo] ?? incident.tipo ?? 'Sin tipo'}</strong>
-                  <span className={`latestIncidentState ${stateCls[incident.estado] ?? ''}`}>
-                    {stateLabels[incident.estado] ?? incident.estado ?? 'Sin estado'}
+                  <span className={`latestIncidentState ${stateCls[normalizeState(incident.estado)] ?? ''}`}>
+                    {stateLabels[normalizeState(incident.estado)] ?? incident.estado ?? 'Sin estado'}
                   </span>
                 </div>
                 <p>{incident.descripcion ?? 'Sin descripción.'}</p>

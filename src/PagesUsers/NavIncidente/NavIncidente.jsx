@@ -24,26 +24,34 @@ const TIPO_META = {
   otro:            { label: 'Otro',            icon: <HelpOutlineIcon />,         cls: 'tipoOtro' },
 }
 
+const STATE_ALIAS = {
+  abierto: 'reportado',
+  en_proceso: 'analisis',
+  cerrado: 'resuelto',
+}
+
+const normalizeState = (state) => STATE_ALIAS[state] || state
+
 const ESTADO_META = {
-  abierto:    { label: 'Abierto',     cls: 'estadoAbierto' },
-  en_proceso: { label: 'En proceso',  cls: 'estadoProceso' },
-  cerrado:    { label: 'Cerrado',     cls: 'estadoCerrado' },
+  reportado: { label: 'Reportado', cls: 'estadoAbierto' },
+  analisis:  { label: 'En análisis', cls: 'estadoProceso' },
+  resuelto:  { label: 'Resuelto', cls: 'estadoCerrado' },
 }
 
 const FILTROS_ESTADO = [
   { key: 'todos',      label: 'Todos' },
-  { key: 'abierto',    label: 'Abierto' },
-  { key: 'en_proceso', label: 'En proceso' },
-  { key: 'cerrado',    label: 'Cerrado' },
+  { key: 'reportado',  label: 'Reportado' },
+  { key: 'analisis',   label: 'En análisis' },
+  { key: 'resuelto',   label: 'Resuelto' },
 ]
 
 const TIMELINE_STEPS = [
-  { key: 'abierto',    label: 'Reportado' },
-  { key: 'en_proceso', label: 'En proceso' },
-  { key: 'cerrado',    label: 'Resuelto' },
+  { key: 'reportado',  label: 'Reportado' },
+  { key: 'analisis',   label: 'En análisis' },
+  { key: 'resuelto',   label: 'Resuelto' },
 ]
 
-const ORDER_IDX = { abierto: 0, en_proceso: 1, cerrado: 2 }
+const ORDER_IDX = { reportado: 0, analisis: 1, resuelto: 2 }
 
 const fmt = (iso) => {
   if (!iso) return '—'
@@ -91,7 +99,7 @@ const NavIncidente = () => {
 
   const filtered = useMemo(() => {
     let list = [...all]
-    if (filtroEstado !== 'todos') list = list.filter(i => i.estado === filtroEstado)
+    if (filtroEstado !== 'todos') list = list.filter(i => normalizeState(i.estado) === filtroEstado)
     if (filtroTipo   !== 'todos') list = list.filter(i => i.tipo   === filtroTipo)
     if (search.trim()) {
       const s = search.toLowerCase()
@@ -110,9 +118,9 @@ const NavIncidente = () => {
 
   const counts = useMemo(() => ({
     todos: all.length,
-    abierto: all.filter(i => i.estado === 'abierto').length,
-    en_proceso: all.filter(i => i.estado === 'en_proceso').length,
-    cerrado: all.filter(i => i.estado === 'cerrado').length,
+    reportado: all.filter(i => normalizeState(i.estado) === 'reportado').length,
+    analisis: all.filter(i => normalizeState(i.estado) === 'analisis').length,
+    resuelto: all.filter(i => normalizeState(i.estado) === 'resuelto').length,
   }), [all])
 
   return (
@@ -199,7 +207,8 @@ const NavIncidente = () => {
             <ul className="navIncList">
               {filtered.map(inc => {
                 const tipo  = TIPO_META[inc.tipo]  ?? { label: inc.tipo, cls: 'tipoOtro' }
-                const state = ESTADO_META[inc.estado] ?? { label: inc.estado, cls: 'estadoAbierto' }
+                const normalizedEstado = normalizeState(inc.estado)
+                const state = ESTADO_META[normalizedEstado] ?? { label: normalizedEstado, cls: 'estadoAbierto' }
                 return (
                   <li key={inc.id} className={`navIncRow${selected?.id === inc.id ? ' navIncRowActive' : ''}`}>
                     <div className="navIncRowIncidente">

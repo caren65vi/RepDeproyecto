@@ -21,18 +21,26 @@ const TIPO_META = {
   otro:            { label: 'Otro',            icon: <HelpOutlineIcon />,       cls: 'detTipoOtro' },
 }
 
-const ESTADO_META = {
-  abierto:    { label: 'Abierto',    cls: 'detEstadoAbierto' },
-  en_proceso: { label: 'En proceso', cls: 'detEstadoProceso' },
-  cerrado:    { label: 'Cerrado',    cls: 'detEstadoCerrado' },
+const STATE_ALIAS = {
+  abierto: 'reportado',
+  en_proceso: 'analisis',
+  cerrado: 'resuelto',
 }
 
-const ORDER_IDX = { abierto: 0, en_proceso: 1, cerrado: 2 }
+const normalizeState = (state) => STATE_ALIAS[state] || state
+
+const ESTADO_META = {
+  reportado: { label: 'Reportado', cls: 'detEstadoAbierto' },
+  analisis:  { label: 'En análisis', cls: 'detEstadoProceso' },
+  resuelto:  { label: 'Resuelto', cls: 'detEstadoCerrado' },
+}
+
+const ORDER_IDX = { reportado: 0, analisis: 1, resuelto: 2 }
 
 const STEPS = [
-  { key: 'abierto',    num: 1, label: 'Reportado',  desc: 'El incidente fue registrado exitosamente.' },
-  { key: 'en_proceso', num: 2, label: 'En proceso',  desc: 'El equipo está atendiendo el incidente.' },
-  { key: 'cerrado',    num: 3, label: 'Resuelto',    desc: 'El incidente fue solucionado.' },
+  { key: 'reportado', num: 1, label: 'Reportado',  desc: 'El incidente fue registrado exitosamente.' },
+  { key: 'analisis',  num: 2, label: 'En análisis', desc: 'El equipo está atendiendo el incidente.' },
+  { key: 'resuelto',  num: 3, label: 'Resuelto',    desc: 'El incidente fue solucionado.' },
   { key: 'notif',      num: 4, label: 'Notificación', desc: 'Te avisamos cuando sea resuelto.' },
 ]
 
@@ -54,8 +62,9 @@ const StepIcon = ({ done, current }) => {
 
 const DetailsIncidents = ({ incident, onClose }) => {
   const tipo    = TIPO_META[incident.tipo]    ?? { label: incident.tipo,    icon: <HelpOutlineIcon />, cls: 'detTipoOtro' }
-  const estado  = ESTADO_META[incident.estado] ?? { label: incident.estado, cls: 'detEstadoAbierto' }
-  const reached = ORDER_IDX[incident.estado]   ?? 0
+  const normalizedEstado = normalizeState(incident.estado)
+  const estado  = ESTADO_META[normalizedEstado] ?? { label: normalizedEstado, cls: 'detEstadoAbierto' }
+  const reached = ORDER_IDX[normalizedEstado]   ?? 0
 
   const modal = (
     <div className="detBackdrop" onClick={onClose}>

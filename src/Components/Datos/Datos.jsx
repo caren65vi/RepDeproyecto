@@ -3,20 +3,28 @@ import { collection, onSnapshot } from 'firebase/firestore'
 import { db } from '../../FireBase/config'
 import './Datos.css'
 
+const STATE_ALIAS = {
+  abierto: 'reportado',
+  en_proceso: 'analisis',
+  cerrado: 'resuelto',
+}
+
+const normalizeState = (state) => STATE_ALIAS[state] || state
+
 const Datos = () => {
-  const [counts, setCounts] = useState({ total: 0, abierto: 0, en_proceso: 0, cerrado: 0 })
+  const [counts, setCounts] = useState({ total: 0, reportado: 0, analisis: 0, resuelto: 0 })
   const [error, setError] = useState('')
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
       collection(db, 'incidente'),
       (snapshot) => {
-        const totals = { total: snapshot.size, abierto: 0, en_proceso: 0, cerrado: 0 }
+        const totals = { total: snapshot.size, reportado: 0, analisis: 0, resuelto: 0 }
         snapshot.docs.forEach((doc) => {
-          const estado = doc.data().estado
-          if (estado === 'abierto')    totals.abierto += 1
-          if (estado === 'en_proceso') totals.en_proceso += 1
-          if (estado === 'cerrado')    totals.cerrado += 1
+          const estado = normalizeState(doc.data().estado)
+          if (estado === 'reportado') totals.reportado += 1
+          if (estado === 'analisis')  totals.analisis += 1
+          if (estado === 'resuelto')  totals.resuelto += 1
         })
         setCounts(totals)
         setError('')
@@ -43,16 +51,16 @@ const Datos = () => {
           <strong>{counts.total}</strong>
           <p>Total reportados</p>
         </article>
-        <article className="datosCard datosCard--abierto">
-          <strong>{counts.abierto}</strong>
-          <p>Abiertos</p>
+        <article className="datosCard datosCard--reportado">
+          <strong>{counts.reportado}</strong>
+          <p>Reportado</p>
         </article>
-        <article className="datosCard datosCard--proceso">
-          <strong>{counts.en_proceso}</strong>
-          <p>En proceso</p>
+        <article className="datosCard datosCard--analisis">
+          <strong>{counts.analisis}</strong>
+          <p>En análisis</p>
         </article>
-        <article className="datosCard datosCard--cerrado">
-          <strong>{counts.cerrado}</strong>
+        <article className="datosCard datosCard--resuelto">
+          <strong>{counts.resuelto}</strong>
           <p>Resueltos</p>
         </article>
       </div>

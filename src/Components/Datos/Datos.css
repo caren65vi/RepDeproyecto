@@ -66,15 +66,18 @@
   border-color: rgba(22, 149, 134, 0.3);
 }
 
-.datosCard--abierto {
+.datosCard--abierto,
+.datosCard--reportado {
   border-color: rgba(22, 149, 134, 0.25);
 }
 
-.datosCard--proceso {
+.datosCard--proceso,
+.datosCard--analisis {
   border-color: rgba(237, 176, 46, 0.35);
 }
 
-.datosCard--cerrado {
+.datosCard--cerrado,
+.datosCard--resuelto {
   border-color: rgba(11, 117, 14, 0.25);
 }
 

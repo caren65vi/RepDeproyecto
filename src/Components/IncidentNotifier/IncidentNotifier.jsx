@@ -17,13 +17,21 @@ function describeIncident(incident) {
   return `${type}: ${location}`
 }
 
+const STATE_ALIAS = {
+  abierto: 'reportado',
+  en_proceso: 'analisis',
+  cerrado: 'resuelto',
+}
+
+const normalizeState = (state) => STATE_ALIAS[state] || state
+
 function getStateLabel(state) {
   const labels = {
     reportado: 'Reportado',
     analisis: 'En análisis',
     resuelto: 'Resuelto',
   }
-  return labels[state] || state || 'Sin estado'
+  return labels[normalizeState(state)] || state || 'Sin estado'
 }
 
 const IncidentNotifier = () => {
@@ -80,7 +88,7 @@ const IncidentNotifier = () => {
                 incidentId: change.doc.id,
                 title: 'Nueva incidencia reportada',
                 body,
-                state: incident.estado,
+                state: normalizeState(incident.estado),
               })
             } else if (change.type === 'modified') {
               const previousState = incidentStates.get(change.doc.id)
@@ -90,7 +98,7 @@ const IncidentNotifier = () => {
                   incidentId: change.doc.id,
                   title: 'Estado de incidencia actualizado',
                   body: `${body}. ${getStateLabel(previousState)} -> ${getStateLabel(incident.estado)}`,
-                  state: incident.estado,
+                  state: normalizeState(incident.estado),
                 })
               }
             }
