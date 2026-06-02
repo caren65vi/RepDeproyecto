@@ -1,0 +1,428 @@
+/* ── Backdrop ── */
+.taus__backdrop {
+  align-items: center;
+  animation: tausFadeIn 0.18s ease;
+  background: var(--overlayBg);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  padding: 20px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+@keyframes tausFadeIn {
+  from { opacity: 0 }
+  to   { opacity: 1 }
+}
+
+/* ── Modal ── */
+.taus__modal {
+  animation: tausSlideUp 0.22s ease;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  max-height: 92vh;
+  max-width: 780px;
+  overflow: hidden;
+  width: 100%;
+}
+
+@keyframes tausSlideUp {
+  from { opacity: 0; transform: translateY(20px) }
+  to   { opacity: 1; transform: translateY(0) }
+}
+
+/* ── Header ── */
+.taus__header {
+  align-items: center;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surfaceSoft) 100%);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 20px 24px;
+}
+
+.taus__avatar-wrap {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+}
+
+.taus__avatar-img {
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  height: 52px;
+  object-fit: cover;
+  width: 52px;
+}
+
+.taus__avatar-icon {
+  color: var(--accent);
+  font-size: 52px !important;
+}
+
+.taus__nombre {
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 5px;
+}
+
+.taus__rol-badge {
+  align-items: center;
+  border-radius: 20px;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 700;
+  gap: 5px;
+  letter-spacing: 0.04em;
+  padding: 4px 12px;
+}
+
+.taus__rol-badge--admin {
+  background: rgba(0,90,126,0.12);
+  color: #005A7E;
+}
+
+.taus__rol-badge--usuario {
+  background: var(--accentSoft);
+  color: var(--accent);
+}
+
+.taus__close-btn {
+  align-items: center;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--textMuted);
+  cursor: pointer;
+  display: inline-flex;
+  flex-shrink: 0;
+  height: 34px;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+  width: 34px;
+}
+
+.taus__close-btn:hover {
+  background: var(--dangerSoft);
+  border-color: var(--dangerBorder);
+  color: var(--danger);
+}
+
+/* ── Body ── */
+.taus__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow-y: auto;
+}
+
+/* ── Left ── */
+.taus__left {
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 22px 24px;
+}
+
+.taus__label {
+  color: var(--accent);
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin-bottom: 10px;
+}
+
+.taus__info-section,
+.taus__permisos-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.taus__info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.taus__info-row {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+}
+
+.taus__info-icon {
+  color: var(--textMuted);
+  flex-shrink: 0;
+  font-size: 18px !important;
+  margin-top: 2px;
+}
+
+.taus__info-key {
+  color: var(--textMuted);
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.taus__info-val {
+  color: var(--text);
+  font-size: 13.5px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.taus__uid {
+  color: var(--textMuted) !important;
+  font-family: monospace !important;
+  font-size: 11px !important;
+  word-break: break-all;
+}
+
+.taus__permisos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  list-style: none;
+  padding: 0;
+}
+
+.taus__permiso {
+  align-items: center;
+  background: var(--surfaceSoft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--textMuted);
+  display: flex;
+  font-size: 13px;
+  gap: 8px;
+  padding: 7px 11px;
+  text-transform: capitalize;
+}
+
+.taus__permiso svg {
+  color: var(--accent);
+  font-size: 15px !important;
+}
+
+/* ── Right ── */
+.taus__right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px 24px;
+}
+
+.taus__hint {
+  color: var(--textMuted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.taus__warning {
+  align-items: flex-start;
+  background: rgba(237, 176, 46, 0.10);
+  border: 1px solid rgba(237, 176, 46, 0.35);
+  border-radius: 10px;
+  color: #b8881f;
+  display: flex;
+  font-size: 13px;
+  gap: 8px;
+  padding: 10px 14px;
+}
+
+.taus__warning svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.taus__warning p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.taus__rol-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.taus__rol-btn {
+  align-items: center;
+  background: var(--surfaceSoft);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px;
+  position: relative;
+  text-align: left;
+  transition: all 0.15s;
+}
+
+.taus__rol-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.taus__rol-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.taus__rol-btn > svg:first-child {
+  color: var(--textMuted);
+  flex-shrink: 0;
+  font-size: 22px !important;
+}
+
+.taus__rol-btn div {
+  flex: 1;
+}
+
+.taus__rol-btn strong {
+  color: var(--text);
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.taus__rol-btn span {
+  color: var(--textMuted);
+  font-size: 12px;
+}
+
+.taus__check {
+  color: inherit;
+  font-size: 18px !important;
+}
+
+.taus__rol-btn--usuario.taus__rol-btn--active {
+  background: var(--accentSoft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.taus__rol-btn--usuario.taus__rol-btn--active > svg:first-child,
+.taus__rol-btn--usuario.taus__rol-btn--active strong {
+  color: var(--accent);
+}
+
+.taus__rol-btn--admin.taus__rol-btn--active {
+  background: rgba(0,90,126,0.10);
+  border-color: #005A7E;
+  color: #005A7E;
+}
+
+.taus__rol-btn--admin.taus__rol-btn--active > svg:first-child,
+.taus__rol-btn--admin.taus__rol-btn--active strong {
+  color: #005A7E;
+}
+
+/* ── Confirmación ── */
+.taus__confirm {
+  animation: tausFadeIn 0.18s ease;
+  background: rgba(237,176,46,0.08);
+  border: 1px solid rgba(237,176,46,0.35);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+}
+
+.taus__confirm-icon {
+  color: #EDB02E;
+  font-size: 22px !important;
+}
+
+.taus__confirm p {
+  color: var(--text);
+  font-size: 13.5px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.taus__confirm-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.taus__confirm-btn {
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 16px;
+  transition: all 0.15s;
+}
+
+.taus__confirm-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.taus__confirm-btn--yes {
+  background: var(--accent);
+  border: none;
+  color: white;
+}
+
+.taus__confirm-btn--yes:hover:not(:disabled) {
+  background: var(--accentHover);
+}
+
+.taus__confirm-btn--no {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--textMuted);
+}
+
+.taus__confirm-btn--no:hover:not(:disabled) {
+  background: var(--surfaceSoft);
+}
+
+.taus__feedback {
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0;
+  padding: 9px 13px;
+}
+
+.taus__feedback--ok  { background: rgba(11,117,14,0.10); color: #0B750E; }
+.taus__feedback--err { background: var(--dangerSoft); color: var(--danger); }
+
+/* ── Responsive ── */
+@media (max-width: 680px) {
+  .taus__backdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .taus__modal {
+    border-radius: 16px 16px 0 0;
+    max-height: 96vh;
+  }
+
+  .taus__body {
+    grid-template-columns: 1fr;
+  }
+
+  .taus__left {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}

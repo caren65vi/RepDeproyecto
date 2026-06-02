@@ -11,6 +11,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import LockPersonOutlinedIcon from '@mui/icons-material/LockPersonOutlined'
 import { db } from '../../FireBase/config'
+import './TarjetaUsuario.css'
 
 const fmt = (iso) => {
   if (!iso) return '—'
